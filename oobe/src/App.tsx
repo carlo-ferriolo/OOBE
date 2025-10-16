@@ -1,7 +1,8 @@
 import Sidebar from "./components/Sidebar";
+import Dashboard from "./pages/Dashboard";
 import "./App.css";
 import EmbeddedApp from "./components/EmbeddedApp";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 function App() {
   return (
@@ -10,8 +11,9 @@ function App() {
         <Sidebar />
       </aside>
       <section className="flex-grow-1 d-flex flex-column overflow-auto">
-        <main className="flex-grow-1 bg-light">
+        <main className="flex-grow-1">
           <Routes>
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route
               path="/hub"
               element={
@@ -41,6 +43,7 @@ function App() {
                 />
               }
             />
+            <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Routes>
         </main>
       </section>

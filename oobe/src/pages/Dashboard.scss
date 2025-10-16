@@ -1,0 +1,24 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+
+  .clock-container {
+    margin-bottom: 2rem;
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+    color: #ffffff;
+    font-size: 2rem;
+    font-family: "Poppins", sans-serif;
+  }
+  .cards-container {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .dashboard-title {
+    color: #ffffff;
+    font-family: "Poppins", sans-serif;
+  }
+}

@@ -2,16 +2,19 @@
   "components.Sidebar.applicationHub": {
     "defaultMessage": "Application Hub"
   },
+  "components.Sidebar.connectToClea": {
+    "defaultMessage": "Connect to Clea"
+  },
   "components.Sidebar.dashboard": {
     "defaultMessage": "Dashboard"
   },
   "components.Sidebar.developerCenter": {
     "defaultMessage": "Developer Center"
   },
-  "components.Sidebar.connectToClea": {
-    "defaultMessage": "Connect to Clea"
-  },
   "components.Sidebar.exit": {
     "defaultMessage": "Exit"
+  },
+  "pages.Dashboard.title": {
+    "defaultMessage": "Dashboard"
   }
 }

@@ -1,4 +1,22 @@
 {
+  "components.DeviceDetailsCard.cpuArchitecture": {
+    "defaultMessage": "CPU architecture"
+  },
+  "components.DeviceDetailsCard.cpuModelCode": {
+    "defaultMessage": "CPU model code"
+  },
+  "components.DeviceDetailsCard.cpuModelName": {
+    "defaultMessage": "CPU model name"
+  },
+  "components.DeviceDetailsCard.cpuVendor": {
+    "defaultMessage": "CPU vendor"
+  },
+  "components.DeviceDetailsCard.title": {
+    "defaultMessage": "Device details"
+  },
+  "components.DeviceDetailsCard.totalMemory": {
+    "defaultMessage": "Total memory"
+  },
   "components.GeolocalizationCard.addressLabel": {
     "defaultMessage": "Address:"
   },

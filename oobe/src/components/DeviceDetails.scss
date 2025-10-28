@@ -1,0 +1,62 @@
+$text-color-primary: #ffffff;
+$text-color-secondary: #cccccc;
+$item-gap: 16px;
+
+.device-details-card {
+  width: 100%;
+  height: 50% !important;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    height: 60% !important;
+  }
+  .card-body {
+    justify-content: space-between;
+  }
+
+  &__title {
+    color: $text-color-primary !important;
+    font-family: "Poppins", sans-serif;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .device-details-card__label {
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: $text-color-primary;
+    flex: 1 1 40%;
+    min-width: 120px;
+    margin-left: 0;
+
+    @media (max-width: 768px) {
+      flex: 1 1 100%;
+      text-align: left;
+    }
+  }
+
+  .device-details-card__value {
+    font-size: 14px;
+    font-weight: 400;
+    color: $text-color-secondary;
+    text-align: right;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    flex: 1 1 40%;
+    min-width: 150px;
+
+    @media (max-width: 768px) {
+      text-align: left;
+      flex: 1 1 100%;
+      margin-top: 0.25rem;
+    }
+  }
+}

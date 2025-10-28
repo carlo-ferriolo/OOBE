@@ -5,6 +5,7 @@ import { FormattedMessage } from "react-intl";
 import SystemResourceUsage from "../components/SystemResourceUsage";
 import Geolocalization from "../components/GeolocalizationCard";
 import LogCard from "../components/LogCard";
+import DeviceDetailsCard from "../components/DeviceDetails";
 
 const Dashboard: React.FC = () => {
   const [time, setTime] = useState("");
@@ -53,6 +54,7 @@ const Dashboard: React.FC = () => {
         </Col>
         <Col xs={12} md={6} lg={4} className="d-flex flex-column gap-4">
           <LogCard />
+          <DeviceDetailsCard />
         </Col>
       </Row>
     </Container>

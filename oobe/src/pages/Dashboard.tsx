@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import "./Dashboard.scss";
 import { FormattedMessage } from "react-intl";
 import SystemResourceUsage from "../components/SystemResourceUsage";
-import Geolocalization from "../components/GeolocalizationCard";
 import LogCard, { type UsageLogEntry } from "../components/LogCard";
 import DeviceDetailsCard from "../components/DeviceDetails";
 import type { APIClient, DashboardUpdate } from "../api/APIClient";
+import CardComponent from "../components/CardComponent";
+import { corporateFare, factory, vitalSigns } from "../assets/images";
+import { NavLink } from "react-router-dom";
 
 interface DashboardProps {
   apiClient: APIClient;
@@ -66,7 +68,7 @@ const Dashboard = ({ apiClient }: DashboardProps) => {
             .toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })
             .replace(":", "."),
         };
-        setUsageLogs((prev) => [entry, ...prev.slice(0, 3)]);
+        setUsageLogs((prev) => [entry, ...prev.slice(0, 5)]);
         temp.cpu = undefined;
         temp.ram = undefined;
       }
@@ -79,17 +81,11 @@ const Dashboard = ({ apiClient }: DashboardProps) => {
   return (
     <Container
       fluid
-      className="dashboard-container bg-dark min-vh-100 d-flex flex-column p-3"
+      className="dashboard-container min-vh-100 d-flex flex-column p-3"
     >
-      <Row className="justify-content-center flex-grow-1">
-        <Col
-          xs={10}
-          sm={6}
-          md="auto"
-          className="d-flex flex-column align-items-center justify-content-center h-100"
-        >
+      <Row className="justify-content-center mb-4">
+        <Col xs={12} className="d-flex flex-column align-items-center">
           <div className="clock-container">{time}</div>
-
           <h2 className="dashboard-title fw-bold text-center mt-2">
             <FormattedMessage
               id="pages.Dashboard.title"
@@ -98,23 +94,98 @@ const Dashboard = ({ apiClient }: DashboardProps) => {
           </h2>
         </Col>
       </Row>
-      <Row className="gx-4 gy-4 cards-row flex-grow-1">
-        <Col xs={12} md={6} lg={4} className="d-flex">
-          <SystemResourceUsage
-            cpuData={cpuData}
-            ramData={ramData}
-            realTimeCpu={realTimeCpu}
-            realTimeRam={realTimeRam}
-          />
-        </Col>
-        <Col xs={12} md={6} lg={4} className="d-flex">
-          <Geolocalization />
-        </Col>
-        <Col xs={12} md={6} lg={4} className="d-flex flex-column gap-4">
-          <LogCard usageLogs={usageLogs} />
-          <DeviceDetailsCard apiClient={apiClient} />
+
+      <Card className="dashboard-main-card">
+        <Card.Body className="p-4">
+          <Row className="gx-5 gy-4 cards-row">
+            <Col xs={12} lg={4} className="border-right-column">
+              <div className="component-section">
+                <SystemResourceUsage
+                  cpuData={cpuData}
+                  ramData={ramData}
+                  realTimeCpu={realTimeCpu}
+                  realTimeRam={realTimeRam}
+                />
+              </div>
+            </Col>
+
+            <Col xs={12} lg={4} className="border-right-column">
+              <div className="component-section">
+                <LogCard usageLogs={usageLogs} />
+              </div>
+            </Col>
+
+            <Col xs={12} lg={4}>
+              <div className="component-section">
+                <DeviceDetailsCard apiClient={apiClient} />
+              </div>
+            </Col>
+          </Row>
+        </Card.Body>
+      </Card>
+      <Row className="justify-content-center mb-4">
+        <Col xs={12} className="d-flex flex-column align-items-center">
+          <h2 className="dashboard-discover fw-bold text-center mt-2">
+            <FormattedMessage
+              id="pages.Dashboard.discover"
+              defaultMessage="Discover our demos"
+            />
+          </h2>
         </Col>
       </Row>
+      <div className="div-wrapper">
+        <NavLink to="/smart-building" className="nav-link">
+          <CardComponent
+            icon={corporateFare}
+            title={
+              <FormattedMessage
+                id="pages.DemoApp.smartBuilding.title"
+                defaultMessage="Smart Building"
+              />
+            }
+            description={
+              <FormattedMessage
+                id="pages.DemoApp.smartBuilding.desc"
+                defaultMessage="Control building systems and detect issues in real time"
+              />
+            }
+          />
+        </NavLink>
+        <NavLink to="/medical" className="nav-link">
+          <CardComponent
+            icon={vitalSigns}
+            title={
+              <FormattedMessage
+                id="pages.DemoApp.medical.title"
+                defaultMessage="Medical"
+              />
+            }
+            description={
+              <FormattedMessage
+                id="pages.DemoApp.medical.desc"
+                defaultMessage="Monitor machines and resolve alerts in the factory"
+              />
+            }
+          />
+        </NavLink>
+        <NavLink to="/industrial" className="nav-link">
+          <CardComponent
+            icon={factory}
+            title={
+              <FormattedMessage
+                id="pages.DemoApp.industrialAutomation.title"
+                defaultMessage="Industrial Automation"
+              />
+            }
+            description={
+              <FormattedMessage
+                id="pages.DemoApp.industrialAutomation.desc"
+                defaultMessage="Monitor machines and resolve alerts in the factory"
+              />
+            }
+          />
+        </NavLink>
+      </div>
     </Container>
   );
 };

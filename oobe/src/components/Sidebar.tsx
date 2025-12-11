@@ -1,95 +1,111 @@
-import { NavLink } from "react-router-dom";
+import { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
-  Navbar,
   Nav,
   Container,
   Row,
   Col,
   Button,
   Image,
+  Collapse,
 } from "react-bootstrap";
 import { FormattedMessage } from "react-intl";
 import "./Sidebar.scss";
 import { logo } from "../assets/images";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+
   return (
-    <Navbar variant="dark" className="d-flex flex-column sidebar-menu">
-      <Container className="mb-4 text-center">
-        <Row>
-          <Col>
-            <Image src={logo} alt="SECO Logo" fluid className="sidebar-logo" />
-          </Col>
-        </Row>
-      </Container>
+    <>
+      <button
+        className="sidebar-toggle"
+        onClick={() => setOpen(!open)}
+        aria-label="Toggle Sidebar"
+      >
+        ☰
+      </button>
 
-      <Nav className="sidebar-nav flex-column flex-grow-1 w-100 ps-3 pe-3">
-        <NavLink to="/dashboard" className="nav-link">
-          <FormattedMessage
-            id="components.Sidebar.dashboard"
-            defaultMessage="Dashboard"
-          />
-        </NavLink>
-        <NavLink to="/demo" className="nav-link">
-          <FormattedMessage
-            id="components.Sidebar.demo"
-            defaultMessage="Demo App"
-          />
-        </NavLink>
-        <NavLink to="/tool" className="nav-link">
-          <FormattedMessage
-            id="components.Sidebar.tool"
-            defaultMessage="Testing tool"
-          />
-        </NavLink>
+      <div className={`sidebar-menu ${open ? "open" : ""}`}>
+        <Collapse in={open}>
+          <div className="sidebar-content">
+            <Container className="text-center mb-5">
+              <Row>
+                <Col>
+                  <Image src={logo} alt="Logo" fluid className="sidebar-logo" />
+                </Col>
+              </Row>
+            </Container>
 
-        <NavLink to="/hub" className="nav-link">
-          <FormattedMessage
-            id="components.Sidebar.applicationHub"
-            defaultMessage="Application Hub"
-          />
-        </NavLink>
-        <NavLink to="/developer" className="nav-link">
-          <FormattedMessage
-            id="components.Sidebar.developerCenter"
-            defaultMessage="Developer Center"
-          />
-        </NavLink>
-        <NavLink to="/connect" className="nav-link">
-          <FormattedMessage
-            id="components.Sidebar.connectToClea"
-            defaultMessage="Connect to Clea"
-          />
-        </NavLink>
-      </Nav>
-      <hr className="border-top border-secondary w-100" />
-      <Container fluid className="sidebar-bottom px-3 py-2">
-        <Row className="w-100">
-          <Col xs="auto">
-            <Nav.Link
-              as={NavLink}
-              to="/logout"
-              className="d-flex align-items-center exit-icon-button"
-            >
-              <FormattedMessage
-                id="components.Sidebar.exit"
-                defaultMessage="Exit"
-              />
-            </Nav.Link>
-          </Col>
-          <Col className="text-end ps-0">
-            <Button className="exit-icon-button text-white btn-dark">
-              <FontAwesomeIcon
-                icon={faArrowRightFromBracket}
-                className="text-white"
-              />
-            </Button>
-          </Col>
-        </Row>
-      </Container>
-    </Navbar>
+            <Nav className="sidebar-nav flex-column mt-5">
+              <NavLink
+                to="/dashboard"
+                className="nav-link"
+                onClick={() => setOpen(false)}
+              >
+                <FormattedMessage
+                  id="components.Sidebar.dashboard"
+                  defaultMessage="Dashboard"
+                />
+              </NavLink>
+              <NavLink
+                to="/demo"
+                className="nav-link"
+                onClick={() => setOpen(false)}
+              >
+                <FormattedMessage
+                  id="components.Sidebar.demo"
+                  defaultMessage="Demo App"
+                />
+              </NavLink>
+              <NavLink
+                to="/tool"
+                className="nav-link"
+                onClick={() => setOpen(false)}
+              >
+                <FormattedMessage
+                  id="components.Sidebar.tool"
+                  defaultMessage="Testing tool"
+                />
+              </NavLink>
+            </Nav>
+
+            <Container fluid className="sidebar-bottom mt-4">
+              <Row className="w-100">
+                <Col>
+                  <Button
+                    variant="light"
+                    className="px-3 mx-1 w-100"
+                    onClick={() => {
+                      navigate("/hub");
+                      setOpen(false);
+                    }}
+                  >
+                    App Hub
+                  </Button>
+                </Col>
+                <Col>
+                  <Button
+                    variant="outline-light"
+                    className="px-3 mx-1 w-100"
+                    onClick={() => {
+                      navigate("/developer");
+                      setOpen(false);
+                    }}
+                  >
+                    Dev Center
+                  </Button>
+                </Col>
+              </Row>
+            </Container>
+          </div>
+        </Collapse>
+      </div>
+      {open && (
+        <div className="sidebar-overlay" onClick={() => setOpen(false)} />
+      )}
+    </>
   );
 };
 

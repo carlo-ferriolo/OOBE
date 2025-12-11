@@ -1,45 +1,31 @@
-.system-usage-card {
-  max-width: 500px;
-  width: 100%;
-  margin: 0 auto;
-  max-height: none;
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
 
-  .card-title {
-    color: #ffffff;
+  &.dot-cpu {
+    background-color: #00ffaa;
   }
 
-  .usage-section {
-    .fw-semibold {
-      color: #ffffff;
-    }
-
-    .apexcharts-canvas {
-      width: 100% !important;
-      height: 100% !important;
-    }
-
-    .text-secondary {
-      color: #9b9b9b !important;
-      font-size: 0.8rem;
-    }
-
-    .dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      display: inline-block;
-
-      &.dot-cpu {
-        background-color: #00ffaa;
-      }
-
-      &.dot-ram {
-        background-color: #007bff;
-      }
-    }
+  &.dot-ram {
+    background-color: #007bff;
   }
+}
 
-  .apexcharts-grid line {
-    stroke: gray;
+.system-usage-row {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: nowrap;
+
+  .col {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
+}
+
+.apexcharts-grid line {
+  stroke: rgba(255, 255, 255, 0.1);
 }

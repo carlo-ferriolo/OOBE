@@ -1,6 +1,6 @@
 import ReactApexChart from "react-apexcharts";
 import { type ApexOptions } from "apexcharts";
-import { Card, Row, Col, Badge } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import "./SystemResourceUsage.scss";
 import { FormattedMessage } from "react-intl";
 
@@ -19,10 +19,8 @@ export interface SystemResourceUsageProps {
 const SystemResourceUsage = ({
   cpuData,
   ramData,
-  realTimeCpu,
-  realTimeRam,
 }: SystemResourceUsageProps) => {
-  const baseChartOptions: ApexOptions = {
+  const chartOptions: ApexOptions = {
     chart: {
       type: "line",
       toolbar: { show: false },
@@ -30,98 +28,79 @@ const SystemResourceUsage = ({
       zoom: { enabled: false },
       background: "transparent",
     },
-    stroke: { curve: "straight", width: 3 },
+    stroke: {
+      curve: "straight",
+      width: 3,
+    },
+    colors: ["#00FFAA", "#007BFF"],
     grid: {
-      borderColor: "gray",
+      borderColor: "#444",
       xaxis: { lines: { show: true } },
       yaxis: { lines: { show: true } },
     },
     xaxis: {
       type: "datetime",
-      labels: { style: { colors: "#fff", fontSize: "12px" } },
-    },
-    yaxis: {
-      tickAmount: 5,
       labels: {
-        formatter: (val) => `${val}%`,
         style: { colors: "#fff", fontSize: "12px" },
       },
     },
-    tooltip: { theme: "dark", x: { format: "HH:mm:ss" } },
+    yaxis: {
+      max: 100,
+      tickAmount: 5,
+      labels: {
+        formatter: (v) => `${v}%`,
+        style: { colors: "#fff", fontSize: "12px" },
+      },
+    },
+    tooltip: { theme: "dark" },
     legend: { show: false },
-    dataLabels: { enabled: false },
     markers: { size: 0 },
+    dataLabels: { enabled: false },
   };
 
+  const series = [
+    { name: "CPU", data: cpuData },
+    { name: "RAM", data: ramData },
+  ];
+
   return (
-    <Card className="system-usage-card bg-dark rounded-5 border-secondary border-2">
-      <Card.Body className="d-flex flex-column mt-2">
-        <Card.Title className="fw-bold mb-4 fs-4 ms-3">
-          <FormattedMessage
-            id="components.SystemResourceUsage.title"
-            defaultMessage="System resource usage"
-          />
-        </Card.Title>
+    <>
+      <Row className="align-items-center mb-4 system-usage-row">
+        <Col xs="auto">
+          <span className="fw-bold fs-4 text-light">
+            <FormattedMessage
+              id="components.SystemResourceUsage.title"
+              defaultMessage="Resource usage"
+            />
+          </span>
+        </Col>
+        <Col xs="auto" className="d-flex align-items-center">
+          <span className="dot dot-ram me-2" />
+          <span className="text-light fw-semibold">
+            <FormattedMessage
+              id="components.SystemResourceUsage.ramUsage"
+              defaultMessage="RAM"
+            />
+          </span>
+        </Col>
+        <Col xs="auto" className="d-flex align-items-center">
+          <span className="dot dot-cpu me-2" />
+          <span className="text-light fw-semibold">
+            <FormattedMessage
+              id="components.SystemResourceUsage.cpuUsage"
+              defaultMessage="CPU usage"
+            />
+          </span>
+        </Col>
+      </Row>
 
-        <div className="usage-section mt-5">
-          <Row className="align-items-center justify-content-between mb-2">
-            <Col xs="auto" className="ms-5">
-              <span className="fw-semibold medium">
-                <FormattedMessage
-                  id="components.SystemResourceUsage.cpuUsage"
-                  defaultMessage="CPU usage"
-                />
-              </span>
-            </Col>
-            <Col xs="auto" className="d-flex align-items-center gap-1 me-2">
-              <Badge bg="" className="dot dot-cpu" />
-              <small className="text-secondary">
-                <FormattedMessage
-                  id="components.SystemResourceUsage.realTimeUsage"
-                  defaultMessage="real time usage: {usage}"
-                  values={{ usage: realTimeCpu }}
-                />
-              </small>
-            </Col>
-          </Row>
-          <ReactApexChart
-            options={{ ...baseChartOptions, colors: ["#00FFAA"] }}
-            series={[{ name: "CPU Usage", data: cpuData }]}
-            type="line"
-            height={window.innerWidth < 576 ? 200 : 285}
-          />
-        </div>
-
-        <div className="usage-section">
-          <Row className="align-items-center justify-content-between mb-2">
-            <Col xs="auto">
-              <span className="fw-semibold medium ms-5">
-                <FormattedMessage
-                  id="components.SystemResourceUsage.ramUsage"
-                  defaultMessage="RAM usage"
-                />
-              </span>
-            </Col>
-            <Col xs="auto" className="d-flex align-items-center gap-2 me-2">
-              <Badge bg="" className="dot dot-ram" />
-              <small className="text-secondary">
-                <FormattedMessage
-                  id="components.SystemResourceUsage.realTimeUsage"
-                  defaultMessage="real time usage: {usage}"
-                  values={{ usage: realTimeRam }}
-                />
-              </small>
-            </Col>
-          </Row>
-          <ReactApexChart
-            options={{ ...baseChartOptions, colors: ["#007bff"] }}
-            series={[{ name: "RAM Usage", data: ramData }]}
-            type="line"
-            height={window.innerWidth < 576 ? 200 : 285}
-          />
-        </div>
-      </Card.Body>
-    </Card>
+      <ReactApexChart
+        options={chartOptions}
+        series={series}
+        type="line"
+        height={window.innerWidth < 576 ? 200 : 300}
+      />
+    </>
   );
 };
 

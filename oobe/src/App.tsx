@@ -21,9 +21,8 @@ function App() {
 
   return (
     <div className="d-flex vh-100">
-      <aside className="flex-shrink-0">
-        <Sidebar />
-      </aside>
+      <Sidebar />
+
       <section className="flex-grow-1 d-flex flex-column overflow-auto">
         <main className="flex-grow-1">
           <Routes>

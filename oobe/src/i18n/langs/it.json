@@ -41,23 +41,11 @@
   "components.GeolocalizationCard.title": {
     "defaultMessage": "Geolocalization"
   },
-  "components.Sidebar.applicationHub": {
-    "defaultMessage": "Application Hub"
-  },
-  "components.Sidebar.connectToClea": {
-    "defaultMessage": "Connect to Clea"
-  },
   "components.Sidebar.dashboard": {
     "defaultMessage": "Dashboard"
   },
   "components.Sidebar.demo": {
     "defaultMessage": "Demo App"
-  },
-  "components.Sidebar.developerCenter": {
-    "defaultMessage": "Developer Center"
-  },
-  "components.Sidebar.exit": {
-    "defaultMessage": "Exit"
   },
   "components.Sidebar.tool": {
     "defaultMessage": "Testing tool"
@@ -66,13 +54,10 @@
     "defaultMessage": "CPU usage"
   },
   "components.SystemResourceUsage.ramUsage": {
-    "defaultMessage": "RAM usage"
-  },
-  "components.SystemResourceUsage.realTimeUsage": {
-    "defaultMessage": "real time usage: {usage}"
+    "defaultMessage": "RAM"
   },
   "components.SystemResourceUsage.title": {
-    "defaultMessage": "System resource usage"
+    "defaultMessage": "Resource usage"
   },
   "components.SystemUsageLog.cpu": {
     "defaultMessage": "CPU"
@@ -82,9 +67,6 @@
   },
   "components.SystemUsageLog.title": {
     "defaultMessage": "Log"
-  },
-  "components.SystemUsageLog.usageUpdate": {
-    "defaultMessage": "Usage update"
   },
   "industrialAlertManagement.dischargePressure": {
     "defaultMessage": "DISCHARGE PRESSURE"
@@ -118,6 +100,9 @@
   },
   "medicalAlertManagement.tubeStatus": {
     "defaultMessage": "TUBE STATUS"
+  },
+  "pages.Dashboard.discover": {
+    "defaultMessage": "Discover our demos"
   },
   "pages.Dashboard.title": {
     "defaultMessage": "Dashboard"

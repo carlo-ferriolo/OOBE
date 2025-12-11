@@ -32,87 +32,85 @@ const DeviceDetailsCard = ({ apiClient }: DeviceDetailsCardProps) => {
   }, [apiClient]);
 
   return (
-    <Card className="device-details-card bg-dark rounded-5 border-secondary border-2">
-      <Card.Body className="p-4 d-flex flex-column">
-        <Card.Title className="fw-bold fs-4 mb-3 device-details-card__title">
+    <>
+      <Card.Title className="fw-bold fs-4 mb-3 device-details-card__title">
+        <FormattedMessage
+          id="components.DeviceDetailsCard.title"
+          defaultMessage="Device details"
+        />
+      </Card.Title>
+
+      {error && (
+        <Alert
+          onClose={() => setError(null)}
+          dismissible
+          variant="danger"
+          className="mb-3"
+        >
+          {error}
+        </Alert>
+      )}
+
+      <Row className="device-details-card__item align-items-start mb-3">
+        <Col className="device-details-card__label">
           <FormattedMessage
-            id="components.DeviceDetailsCard.title"
-            defaultMessage="Device details"
+            id="components.DeviceDetailsCard.cpuArchitecture"
+            defaultMessage="CPU architecture"
           />
-        </Card.Title>
+        </Col>
+        <Col className="device-details-card__value">
+          {deviceInfo?.cpuArchitecture ?? "N/A"}
+        </Col>
+      </Row>
 
-        {error && (
-          <Alert
-            onClose={() => setError(null)}
-            dismissible
-            variant="danger"
-            className="mb-3"
-          >
-            {error}
-          </Alert>
-        )}
+      <Row className="device-details-card__item align-items-start mb-3">
+        <Col className="device-details-card__label">
+          <FormattedMessage
+            id="components.DeviceDetailsCard.cpuModelCode"
+            defaultMessage="CPU model code"
+          />
+        </Col>
+        <Col className="device-details-card__value">
+          {deviceInfo?.cpuModelCode ?? "N/A"}
+        </Col>
+      </Row>
 
-        <Row className="device-details-card__item align-items-start mb-3">
-          <Col xs={5} sm={4} md={3} className="device-details-card__label">
-            <FormattedMessage
-              id="components.DeviceDetailsCard.cpuArchitecture"
-              defaultMessage="CPU architecture"
-            />
-          </Col>
-          <Col xs={7} sm={8} md={9} className="device-details-card__value">
-            {deviceInfo?.cpuArchitecture ?? "N/A"}
-          </Col>
-        </Row>
+      <Row className="device-details-card__item align-items-start mb-3">
+        <Col className="device-details-card__label">
+          <FormattedMessage
+            id="components.DeviceDetailsCard.cpuModelName"
+            defaultMessage="CPU model name"
+          />
+        </Col>
+        <Col className="device-details-card__value">
+          {deviceInfo?.cpuModelName ?? "N/A"}
+        </Col>
+      </Row>
 
-        <Row className="device-details-card__item align-items-start mb-3">
-          <Col xs={5} sm={4} md={3} className="device-details-card__label">
-            <FormattedMessage
-              id="components.DeviceDetailsCard.cpuModelCode"
-              defaultMessage="CPU model code"
-            />
-          </Col>
-          <Col xs={7} sm={8} md={9} className="device-details-card__value">
-            {deviceInfo?.cpuModelCode ?? "N/A"}
-          </Col>
-        </Row>
+      <Row className="device-details-card__item align-items-start mb-3">
+        <Col className="device-details-card__label">
+          <FormattedMessage
+            id="components.DeviceDetailsCard.cpuVendor"
+            defaultMessage="CPU vendor"
+          />
+        </Col>
+        <Col className="device-details-card__value">
+          {deviceInfo?.cpuVendor ?? "N/A"}
+        </Col>
+      </Row>
 
-        <Row className="device-details-card__item align-items-start mb-3">
-          <Col xs={5} sm={4} md={3} className="device-details-card__label">
-            <FormattedMessage
-              id="components.DeviceDetailsCard.cpuModelName"
-              defaultMessage="CPU model name"
-            />
-          </Col>
-          <Col xs={7} sm={8} md={9} className="device-details-card__value">
-            {deviceInfo?.cpuModelName ?? "N/A"}
-          </Col>
-        </Row>
-
-        <Row className="device-details-card__item align-items-start mb-3">
-          <Col xs={5} sm={4} md={3} className="device-details-card__label">
-            <FormattedMessage
-              id="components.DeviceDetailsCard.cpuVendor"
-              defaultMessage="CPU vendor"
-            />
-          </Col>
-          <Col xs={7} sm={8} md={9} className="device-details-card__value">
-            {deviceInfo?.cpuVendor ?? "N/A"}
-          </Col>
-        </Row>
-
-        <Row className="device-details-card__item align-items-start">
-          <Col xs={5} sm={4} md={3} className="device-details-card__label">
-            <FormattedMessage
-              id="components.DeviceDetailsCard.totalMemory"
-              defaultMessage="Total memory"
-            />
-          </Col>
-          <Col xs={7} sm={8} md={9} className="device-details-card__value">
-            {deviceInfo?.totalMemory ?? "N/A"}
-          </Col>
-        </Row>
-      </Card.Body>
-    </Card>
+      <Row className="device-details-card__item align-items-start">
+        <Col className="device-details-card__label">
+          <FormattedMessage
+            id="components.DeviceDetailsCard.totalMemory"
+            defaultMessage="Total memory"
+          />
+        </Col>
+        <Col className="device-details-card__value">
+          {deviceInfo?.totalMemory ?? "N/A"}
+        </Col>
+      </Row>
+    </>
   );
 };
 

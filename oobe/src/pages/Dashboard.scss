@@ -3,7 +3,9 @@
   flex-direction: column;
   padding-left: 2rem;
   padding-right: 2rem;
+  max-height: 100% !important;
   overflow-y: auto;
+  background-color: #000;
 
   @media (max-width: 768px) {
     padding-left: 1rem;
@@ -21,14 +23,54 @@
     font-size: 2rem;
     font-family: "Poppins", sans-serif;
   }
-  .cards-container {
-    display: flex;
-    gap: 1rem;
-    width: 100%;
-  }
 
   .dashboard-title {
     color: #ffffff;
     font-family: "Poppins", sans-serif;
   }
+
+  .dashboard-main-card {
+    background-color: #111;
+    border: 1px solid #99999959;
+    border-radius: 20px;
+    color: #ffffff;
+    flex: 1;
+
+    .card-body {
+      padding: 1.5rem;
+      height: 100%;
+    }
+  }
+
+  .dashboard-component-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.cards-row {
+  height: 50%;
+
+  > .col {
+    display: flex;
+    height: 100%;
+  }
+}
+
+.cards-row .flex-column {
+  display: flex;
+}
+
+.div-wrapper {
+  justify-content: space-evenly !important;
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 10em;
+  gap: 2em;
+}
+
+.dashboard-discover {
+  color: #ffffff;
+  padding-top: 1em !important;
 }

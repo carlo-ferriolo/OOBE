@@ -1,62 +1,47 @@
-$text-color-primary: #ffffff;
-$text-color-secondary: #cccccc;
-$item-gap: 16px;
-
 .device-details-card {
-  width: 100%;
-  height: 50% !important;
-  margin: 0 auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-
-  @media (max-width: 768px) {
-    height: 60% !important;
-  }
-  .card-body {
-    justify-content: space-between;
-  }
-
   &__title {
-    color: $text-color-primary !important;
+    color: #f2f2f2 !important;
     font-family: "Poppins", sans-serif;
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 1.5rem !important;
+    padding-bottom: 0.75rem;
   }
 
   &__item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-  }
+    margin-bottom: 1.25rem;
+    padding: 0.9rem 0;
 
-  .device-details-card__label {
-    font-family: "Poppins", sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    color: $text-color-primary;
-    flex: 1 1 40%;
-    min-width: 120px;
-    margin-left: 0;
-
-    @media (max-width: 768px) {
-      flex: 1 1 100%;
-      text-align: left;
+    &:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
     }
   }
 
-  .device-details-card__value {
-    font-size: 14px;
+  &__label {
+    font-family: "Poppins", sans-serif;
+    font-size: 1em;
+    font-weight: 900;
+    color: #f2f2f2;
+
+    @media (max-width: 768px) {
+      margin-bottom: 0.25rem;
+      font-weight: 600;
+    }
+  }
+
+  &__value {
+    font-family: "Poppins", sans-serif;
+    font-size: 0.875rem;
     font-weight: 400;
-    color: $text-color-secondary;
+    color: #585555;
     text-align: right;
-    word-break: break-word;
-    overflow-wrap: break-word;
-    flex: 1 1 40%;
-    min-width: 150px;
+    padding-right: 0;
 
     @media (max-width: 768px) {
       text-align: left;
-      flex: 1 1 100%;
-      margin-top: 0.25rem;
+      font-weight: 700;
+      color: #f0f0f0;
     }
   }
 }

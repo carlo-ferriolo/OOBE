@@ -140,6 +140,51 @@
   "components.SystemUsageLog.title": {
     "defaultMessage": "Log"
   },
+  "electricityMeter.additional.title": {
+    "defaultMessage": "Informazioni aggiuntive"
+  },
+  "electricityMeter.averageDailyUsage": {
+    "defaultMessage": "Consumo medio giornaliero"
+  },
+  "electricityMeter.consumption.title": {
+    "defaultMessage": "Consumo"
+  },
+  "electricityMeter.cost.title": {
+    "defaultMessage": "Costo"
+  },
+  "electricityMeter.currentReading": {
+    "defaultMessage": "Lettura attuale"
+  },
+  "electricityMeter.currentTariff": {
+    "defaultMessage": "Tariffa attuale"
+  },
+  "electricityMeter.customer": {
+    "defaultMessage": "Cliente"
+  },
+  "electricityMeter.estimatedCost": {
+    "defaultMessage": "Costo stimato"
+  },
+  "electricityMeter.meterId": {
+    "defaultMessage": "ID contatore"
+  },
+  "electricityMeter.peakDemand": {
+    "defaultMessage": "Picco di domanda"
+  },
+  "electricityMeter.periodConsumption": {
+    "defaultMessage": "Consumo del periodo"
+  },
+  "electricityMeter.previousReading": {
+    "defaultMessage": "Lettura precedente"
+  },
+  "electricityMeter.readingDate": {
+    "defaultMessage": "Data lettura"
+  },
+  "electricityMeter.status": {
+    "defaultMessage": "Stato"
+  },
+  "electricityMeter.title": {
+    "defaultMessage": "Contatore elettrico"
+  },
   "industrialAlertManagement.dischargePressure": {
     "defaultMessage": "DISCHARGE PRESSURE"
   },
@@ -235,39 +280,6 @@
   },
   "pages.SmartBuilding.smartLobby.title": {
     "defaultMessage": "Smart Lobby"
-  },
-  "pages.SmartClinical.age": {
-    "defaultMessage": "Age:"
-  },
-  "pages.SmartClinical.bloodCountButton": {
-    "defaultMessage": "Blood Count(CBC)"
-  },
-  "pages.SmartClinical.bloodPressure": {
-    "defaultMessage": "Blood Pressure"
-  },
-  "pages.SmartClinical.bloodType": {
-    "defaultMessage": "Blood Type:"
-  },
-  "pages.SmartClinical.height": {
-    "defaultMessage": "Height:"
-  },
-  "pages.SmartClinical.oxygenSaturation": {
-    "defaultMessage": "Oxygen Saturation"
-  },
-  "pages.SmartClinical.physician": {
-    "defaultMessage": "Attending Physician:"
-  },
-  "pages.SmartClinical.realTimeAssistant": {
-    "defaultMessage": "Real time assistant"
-  },
-  "pages.SmartClinical.realTimeAssistantMessage": {
-    "defaultMessage": "Of course, here is the last laboratory test for the patient."
-  },
-  "pages.SmartClinical.reasonForHospitalization": {
-    "defaultMessage": "Reason for hospitalization:"
-  },
-  "pages.SmartClinical.weight": {
-    "defaultMessage": "Weight:"
   },
   "pages.TestingTool.easyTransfer": {
     "defaultMessage": "Easy Image/Video transfer"

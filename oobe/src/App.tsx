@@ -14,6 +14,7 @@ import SmartAlertManagement from "./pages/SmartAlertManagement";
 import MedicalAlertManagement from "./pages/MedicalAlertManagement";
 import IndustrialAlertManagement from "./pages/IndustrialAlertManagement";
 import { useLocation } from "react-router-dom";
+import SmartLoby from "./pages/SmartLobby";
 import VideoPlayerTestTool from "./pages/VideoPlayerTestTool";
 import RGBPatternTestTool from "./pages/RGBPatternTestTool";
 import SampleIntegrityCheck from "./pages/SampleIntegrityCheck";
@@ -24,6 +25,7 @@ const HIDE_SIDEBAR_ROUTES = [
   "/medical-alert-management",
   "/smart-alert-management",
   "/industrial-alert-management",
+  "/smart-loby",
   "/smart-building",
   "/medical",
   "/industrial",
@@ -56,6 +58,7 @@ function App() {
             <Route path="/smart-building" element={<SmartBuilding />} />
             <Route path="/medical" element={<Medical />} />
             <Route path="/industrial" element={<IndustrialAutomation />} />
+            <Route path="/smart-loby" element={<SmartLoby />} />
             <Route
               path="/smart-alert-management"
               element={<SmartAlertManagement apiClient={apiClient} />}

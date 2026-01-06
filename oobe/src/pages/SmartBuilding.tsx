@@ -38,7 +38,7 @@ const SmartBuilding = () => {
 
       <div className="cards-wrapper-smartBuilding">
         <Col>
-          <NavLink to="/smart-alert-management" className="nav-link">
+          <NavLink to="/smart-loby" className="nav-link">
             <CardComponent
               icon={interactiveSpace}
               title={

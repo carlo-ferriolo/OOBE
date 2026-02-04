@@ -21,5 +21,7 @@ dist-ssr
 *.ntvs*
 *.njsproj
 *.sln
+*.sw?
 
-src/i18n/langs-compiled
+**/src/i18n/langs-compiled
+

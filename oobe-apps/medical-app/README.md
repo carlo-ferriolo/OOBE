@@ -21,9 +21,6 @@ npm install
 ### Start the app:
 
 ```sh
-npm run start
+npm run watch
+npx serve -p 8080
 ```
-
-### Visit app:
-
-[http://localhost:5173/](http://localhost:5173/)

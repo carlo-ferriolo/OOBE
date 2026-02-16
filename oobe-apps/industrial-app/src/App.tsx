@@ -1,8 +1,6 @@
-import Sidebar from "./components/Sidebar";
 import AstarteAPIClient from "./api/AstarteAPIClient";
 import { useEffect, useMemo, useState } from "react";
-import { Alert, Col, Row, Spinner } from "react-bootstrap";
-import { FormattedMessage } from "react-intl";
+import { Container, Spinner } from "react-bootstrap";
 
 export type AppProps = {
   astarteUrl: URL;
@@ -13,13 +11,8 @@ export type AppProps = {
 
 const App = ({ astarteUrl, realm, deviceId, token }: AppProps) => {
   const [dataFetching, setDataFetching] = useState(false);
-  const [selectedSection, setSelectedSection] = useState<string>("line");
-  const [lineIds, setLineIds] = useState<string[]>([]);
+  const [imageIds, setImageIds] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
-
-  const handleSectionChange = (e: string) => {
-    setSelectedSection(e);
-  };
 
   const astarteClient = useMemo(() => {
     return new AstarteAPIClient({ astarteUrl, realm, token });
@@ -29,9 +22,9 @@ const App = ({ astarteUrl, realm, deviceId, token }: AppProps) => {
     setDataFetching(true);
 
     astarteClient
-      .getLineIds(deviceId)
+      .getImagesIds(deviceId)
       .then((ids) => {
-        setLineIds(ids);
+        setImageIds(ids);
       })
       .catch(() => {
         setError("Failed to fetch data.");
@@ -42,57 +35,16 @@ const App = ({ astarteUrl, realm, deviceId, token }: AppProps) => {
   }, [astarteClient, deviceId]);
 
   return (
-    <Row className="app-container p-4">
-      <Col xs={4} xl={2} className="border-end position-relative overflow-auto">
-        <Sidebar
-          activeTab={selectedSection}
-          onChange={handleSectionChange}
-          lineIds={lineIds}
-        />
-      </Col>
-      <Col xs={8} xl={10} className="px-4">
-        {dataFetching ? (
-          <div className="text-center">
-            <div className="d-inline-flex align-items-center justify-content-center m-3">
-              <Spinner
-                animation="border"
-                variant="primary"
-                style={{ marginRight: "10px" }}
-              />
-              <FormattedMessage id="loading" defaultMessage="Loading..." />
-            </div>
-          </div>
-        ) : (
-          <>
-            {selectedSection === "line" ? (
-              <h6>
-                <FormattedMessage
-                  id="allLines"
-                  defaultMessage="All Lines (Global Views)"
-                />
-              </h6>
-            ) : (
-              <h6>
-                <FormattedMessage
-                  id="line"
-                  defaultMessage="Line ({lineId})"
-                  values={{ lineId: selectedSection }}
-                />
-              </h6>
-            )}
-            {error && (
-              <Alert
-                variant="danger"
-                onClose={() => setError(null)}
-                dismissible
-              >
-                {error}
-              </Alert>
-            )}
-          </>
-        )}
-      </Col>
-    </Row>
+    <Container fluid className="p-4">
+      {dataFetching ? (
+        <div className="p-2 p-md-4 text-center">
+          <Spinner />
+        </div>
+      ) : (
+        <h1>Industrial App</h1>
+        // TODO: implement components
+      )}
+    </Container>
   );
 };
 

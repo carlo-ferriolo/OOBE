@@ -11,20 +11,19 @@ type Config = AstarteAPIClientProps & {
   appEngineUrl: URL;
 };
 
-type LinesParameters = {
+type ImageParameters = {
   deviceId: string;
-  lineId: string;
+  imageId: string;
   sinceAfter?: Date;
   since?: Date;
   to?: Date;
   limit?: number;
 };
 
-type LineData = {
-  cycleEndTime: Date;
-  cycleStartTime: Date;
+type ImageData = {
   productName: string;
-  quality: boolean;
+  drillError: number;
+  shortCircuit: number;
   timestamp: Date;
 };
 
@@ -51,59 +50,37 @@ class AstarteAPIClient {
     });
   }
 
-  async getLineIds(deviceId: string): Promise<string[]> {
+  async getImagesIds(deviceId: string): Promise<string[]> {
     const { realm } = this.config;
     const response = await this.axiosInstance.get(
-      `v1/${realm}/devices/${deviceId}/interfaces/com.oobe.industrial.Lines`,
+      `v1/${realm}/devices/${deviceId}/interfaces/com.oobe.quality.Inspection`,
     );
 
     return Object.keys(response.data?.data ?? {});
   }
 
-  async getLinesData({
+  async getImagesData({
     deviceId,
-    lineId,
+    imageId,
     sinceAfter,
     since,
     to,
     limit,
-  }: LinesParameters): Promise<LineData[]> {
+  }: ImageParameters): Promise<ImageData[]> {
     const { realm } = this.config;
 
     const query: Record<string, string> = {};
-
-    if (sinceAfter) {
-      query.sinceAfter = sinceAfter.toISOString();
-    }
-    if (since) {
-      query.since = since.toISOString();
-    }
-    if (to) {
-      query.to = to.toISOString();
-    }
-    if (limit) {
-      query.limit = limit.toString();
-    }
+    if (sinceAfter) query.sinceAfter = sinceAfter.toISOString();
+    if (since) query.since = since.toISOString();
+    if (to) query.to = to.toISOString();
+    if (limit) query.limit = limit.toString();
 
     return this.axiosInstance
       .get(
-        `v1/${realm}/devices/${deviceId}/interfaces/com.oobe.industrial.Lines/${lineId}`,
-        {
-          params: query,
-        },
+        `v1/${realm}/devices/${deviceId}/interfaces/com.oobe.quality.Inspection/${imageId}`,
+        { params: query },
       )
-      .then((response) =>
-        response.data.map(
-          (data: any) =>
-            ({
-              cycleEndTime: data.cycle_end_time,
-              cycleStartTime: data.cycle_start_time,
-              productName: data.product_name,
-              quality: data.quality,
-              timestamp: data.timestamp,
-            }) as LineData,
-        ),
-      )
+      .then((response) => response.data?.data ?? [])
       .catch((error) => {
         throw error;
       });
@@ -111,4 +88,4 @@ class AstarteAPIClient {
 }
 
 export default AstarteAPIClient;
-export type { LineData, LinesParameters };
+export type { ImageData, ImageParameters };

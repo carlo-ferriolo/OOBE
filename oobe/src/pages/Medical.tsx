@@ -8,8 +8,13 @@ import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import FaceRecognitionModal from "../components/FaceRecognitionModal";
 import { useState } from "react";
+import type { APIClient } from "../api/APIClient";
 
-const Medical = () => {
+interface MedicalProps {
+  apiClient: APIClient;
+}
+
+const Medical = ({ apiClient }: MedicalProps) => {
   const [showModal, setShowModal] = useState(false);
   return (
     <Container fluid className="medical-container p-3">
@@ -67,6 +72,7 @@ const Medical = () => {
           show={showModal}
           onHide={() => setShowModal(false)}
           url="/smart-clinical"
+          apiClient={apiClient}
         />
 
         <Col>

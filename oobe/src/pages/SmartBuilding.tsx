@@ -9,7 +9,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import FaceRecognitionModal from "../components/FaceRecognitionModal";
 import { useState } from "react";
+import type { APIClient } from "../api/APIClient";
 
+interface SmartBuildingProps {
+  apiClient: APIClient;
+}
+
+const SmartBuilding = ({ apiClient }: SmartBuildingProps) => {
   const [showModal, setShowModal] = useState(false);
   return (
     <Container fluid className="smartBuilding-container p-3">
@@ -67,6 +73,7 @@ import { useState } from "react";
           show={showModal}
           onHide={() => setShowModal(false)}
           url="/smart-loby"
+          apiClient={apiClient}
         />
 
         <Col>

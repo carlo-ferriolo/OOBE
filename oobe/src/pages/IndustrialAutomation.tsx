@@ -8,8 +8,13 @@ import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import FaceRecognitionModal from "../components/FaceRecognitionModal";
 import { useState } from "react";
+import type { APIClient } from "../api/APIClient";
 
-const IndustrialAutomation = () => {
+interface IndustrialAutomationProps {
+  apiClient: APIClient;
+}
+
+const IndustrialAutomation = ({ apiClient }: IndustrialAutomationProps) => {
   const [showModal, setShowModal] = useState(false);
   return (
     <Container fluid className="industrial-container p-3">
@@ -68,6 +73,7 @@ const IndustrialAutomation = () => {
           show={showModal}
           onHide={() => setShowModal(false)}
           url="#"
+          apiClient={apiClient}
         />
 
         <Col>

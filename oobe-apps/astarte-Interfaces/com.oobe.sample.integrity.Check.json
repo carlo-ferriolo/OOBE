@@ -13,17 +13,18 @@
       "description": "Timestamp of when the image was taken"
     },
     {
-      "endpoint": "/%{imageName}/quality",
-      "type": "boolean",
+      "endpoint": "/%{imageName}/qualityOk",
+      "type": "integer",
       "explicit_timestamp": true,
-      "description": "Determines the quality of the piece in the image",
-      "doc": "True if quality is OK. False if quality is not OK."
+      "description": "Determines the the number of good cavities",
+      "doc": "Determines the the number of good cavities"
     },
     {
-      "endpoint": "/%{imageName}/productName",
-      "type": "string",
+      "endpoint": "/%{imageName}/qualityKo",
+      "type": "integer",
       "explicit_timestamp": true,
-      "description": "Product name"
+      "description": "Determines the the number of bad cavities",
+      "doc": "Determines the the number of bad cavities"
     }
   ]
 }

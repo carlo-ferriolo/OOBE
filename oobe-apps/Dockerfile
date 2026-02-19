@@ -15,9 +15,14 @@ RUN cd smart-building-app && \
     npm ci && \
     npm run build
 
+RUN cd sample-integrity-check-app && \
+npm ci && \
+npm run build
+
 
 FROM nginx:1
 COPY --from=builder /app/industrial-app/dist/app.js /usr/share/nginx/html/industrial-app/main.js
 COPY --from=builder /app/medical-app/dist/app.js /usr/share/nginx/html/medical-app/main.js
 COPY --from=builder /app/smart-building-app/dist/app.js /usr/share/nginx/html/smart-building-app/main.js
+COPY --from=builder /app/sample-integrity-check-app/dist/app.js /usr/share/nginx/html/sample-integrity-check-app/main.js
 ADD nginx.conf /etc/nginx/conf.d/default.conf

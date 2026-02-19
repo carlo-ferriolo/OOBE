@@ -1,0 +1,41 @@
+{
+  "pillsIntegrityCheck": {
+    "defaultMessage": "Pills integrity check (broken vs good cavities)"
+  },
+  "noData": {
+    "defaultMessage": "No data available."
+  },
+  "loading": {
+    "defaultMessage": "Loading..."
+  },
+  "topProducts": {
+    "defaultMessage": "Top Products"
+  },
+  "sampleIntegrityCheck": {
+    "defaultMessage": "Sample integrity check"
+  },
+  "stats.highestValuesRecordedTitle": {
+    "defaultMessage": "Highest Values Recorded"
+  },
+  "stats.totalPieces": {
+    "defaultMessage": "Total Pieces"
+  },
+  "stats.qualityOk": {
+    "defaultMessage": "Quality OK"
+  },
+  "stats.qualityKo": {
+    "defaultMessage": "Quality KO"
+  },
+  "stats.qualityRate": {
+    "defaultMessage": "Quality Rate"
+  },
+  "chart.broken": {
+    "defaultMessage": "Broken"
+  },
+  "chart.goodState": {
+    "defaultMessage": "Good state"
+  },
+  "fetchData.error": {
+    "defaultMessage": "Failed to fetch data."
+  }
+}

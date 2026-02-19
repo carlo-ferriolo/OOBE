@@ -8,6 +8,16 @@ export type PatientOverviewData = {
   hospitalizationReason: string;
 };
 
+export type PatientOverviewDto = {
+  name: string;
+  age: number;
+  blood_type: string;
+  height: number;
+  phisician: string;
+  weight: number;
+  hospitalization_reason: string;
+};
+
 export type MedicalReportsData = {
   type: string;
   facility: string;

@@ -4,6 +4,7 @@ import qs from "qs";
 import {
   MedicalReportsData,
   PatientOverviewData,
+  PatientOverviewDto,
   VitalSignsData,
   VitalSignsDto,
 } from "types";
@@ -261,18 +262,19 @@ class AstarteAPIClient {
       .get(
         `v1/${realm}/devices/${deviceId}/interfaces/com.oobe.patient.Overview`,
       )
-      .then(
-        (response) =>
-          ({
-            name: response.data.data.name,
-            age: response.data.data.age,
-            bloodType: response.data.data.blood_type,
-            height: response.data.data.height,
-            phisician: response.data.data.phisician,
-            weight: response.data.data.weight,
-            hospitalizationReason: response.data.data.hospitalizationReason,
-          }) as PatientOverviewData,
-      )
+      .then((response) => {
+        const data: PatientOverviewDto = response.data.data;
+
+        return {
+          name: data.name,
+          age: data.age,
+          bloodType: data.blood_type,
+          height: data.height,
+          phisician: data.phisician,
+          weight: data.weight,
+          hospitalizationReason: data.hospitalization_reason,
+        } as PatientOverviewData;
+      })
       .catch((error) => {
         console.error("[API] ERROR", error);
         throw error;

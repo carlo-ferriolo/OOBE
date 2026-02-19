@@ -2,6 +2,9 @@
   "appTitle": {
     "defaultMessage": "People counter"
   },
+  "busiestTime": {
+    "defaultMessage": "Busiest Time"
+  },
   "cameraHistoryTable.date": {
     "defaultMessage": "Date"
   },
@@ -14,7 +17,37 @@
   "cameraHistoryTable.time": {
     "defaultMessage": "Time"
   },
+  "day": {
+    "defaultMessage": "Day"
+  },
+  "groups": {
+    "defaultMessage": "Groups"
+  },
+  "highestValue": {
+    "defaultMessage": "Highest Values Recorded This Week"
+  },
+  "historyTable": {
+    "defaultMessage": "History"
+  },
   "loading": {
     "defaultMessage": "Loading..."
+  },
+  "month": {
+    "defaultMessage": "Month"
+  },
+  "no_data": {
+    "defaultMessage": "N/A"
+  },
+  "singlePerson": {
+    "defaultMessage": "Single Person"
+  },
+  "totalPeople": {
+    "defaultMessage": "Total People"
+  },
+  "week": {
+    "defaultMessage": "Week"
+  },
+  "year": {
+    "defaultMessage": "Year"
   }
 }

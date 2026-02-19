@@ -82,7 +82,7 @@ class AstarteAPIClient {
             ({
               event: data.event,
               behavior: data.behavior,
-              datetime: data.timestamp,
+              datetime: data.datetime,
               numberOfPeople: data.number_of_people,
             }) as CameraHistoryData,
         );

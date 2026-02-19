@@ -7,6 +7,8 @@ import App, { AppProps } from "./App";
 import en from "./i18n/langs-compiled/en.json";
 import it from "./i18n/langs-compiled/it.json";
 
+import datePickerStyle from "react-datepicker/dist/react-datepicker.css";
+
 const messages = { en, it };
 
 type UserPreferences = {
@@ -30,6 +32,7 @@ const AppLifecycle = {
     root.render(
       <>
         <link href={themeUrl} type="text/css" rel="stylesheet" />
+        <style>{datePickerStyle.toString()}</style>
         <IntlProvider
           messages={messages[language]}
           locale={language}

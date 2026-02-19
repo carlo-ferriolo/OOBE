@@ -4,7 +4,7 @@ import { CameraHistoryData } from "types";
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TablePagination from "./TablePagination";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 type Props = {
   data: CameraHistoryData[];
@@ -15,6 +15,10 @@ const HistoryCameraTable = ({ data }: Props) => {
 
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 10;
+
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [data]);
 
   const totalPages = Math.ceil(data.length / itemsPerPage);
 

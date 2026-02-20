@@ -146,6 +146,36 @@
   "components.SystemUsageLog.title": {
     "defaultMessage": "Log"
   },
+  "crowdDetection.analyseMessage": {
+    "defaultMessage": "Scanning in progress..."
+  },
+  "crowdDetection.btnNext": {
+    "defaultMessage": "Next"
+  },
+  "crowdDetection.btnPrevious": {
+    "defaultMessage": "Previous"
+  },
+  "crowdDetection.error": {
+    "defaultMessage": "Analysis error occurred."
+  },
+  "crowdDetection.fall": {
+    "defaultMessage": "FALL"
+  },
+  "crowdDetection.noPeople": {
+    "defaultMessage": "No people detected."
+  },
+  "crowdDetection.peopleCounter": {
+    "defaultMessage": "PEOPLE COUNTER"
+  },
+  "crowdDetection.person": {
+    "defaultMessage": "PERSON"
+  },
+  "crowdDetection.personDetected": {
+    "defaultMessage": "Person detected"
+  },
+  "crowdDetection.start": {
+    "defaultMessage": "Start Analysis"
+  },
   "electricityMeter.additional.title": {
     "defaultMessage": "Additional Info"
   },
@@ -278,6 +308,12 @@
   "pages.Medical.smartClinicalRecord.title": {
     "defaultMessage": "Smart Clinical Record"
   },
+  "pages.SmartBuilding.detection.desc": {
+    "defaultMessage": "Count people and detect falls in common areas."
+  },
+  "pages.SmartBuilding.detection.title": {
+    "defaultMessage": "Crowd and fall detection"
+  },
   "pages.SmartBuilding.smartLobby.desc": {
     "defaultMessage": "Recognize residents and access condo info."
   },
@@ -394,6 +430,9 @@
   },
   "qualityInspection.shortCircuit": {
     "defaultMessage": "Short circuit"
+  },
+  "rvirM2": {
+    "defaultMessage": "Location"
   },
   "smartAlertManagement.gantryTemperature": {
     "defaultMessage": "GANTRY TEMPERATURE"

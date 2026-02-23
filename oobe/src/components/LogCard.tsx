@@ -38,10 +38,7 @@ const SystemUsageLog = ({ usageLogs }: SystemUsageLogProps) => {
                 <Row className="flex-column g-1">
                   <Col>
                     <Row className="g-3">
-                      <Col
-                        xs="auto"
-                        className="d-flex align-items-center gap-2"
-                      >
+                      <Col xs="5" className="d-flex align-items-center gap-2">
                         <span className="dot dot-cpu" />
                         <small>
                           <FormattedMessage
@@ -62,7 +59,7 @@ const SystemUsageLog = ({ usageLogs }: SystemUsageLogProps) => {
                             id="components.SystemUsageLog.ram"
                             defaultMessage={"RAM"}
                           />{" "}
-                          {log.ram}%
+                          {log.ram.toFixed(2)}%
                         </small>
                       </Col>
                     </Row>

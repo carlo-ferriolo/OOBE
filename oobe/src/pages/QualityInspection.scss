@@ -77,8 +77,9 @@
   }
 
   .image {
-    height: 70vh;
+    max-height: 65vh;
     width: auto;
+    object-fit: contain;
     border-radius: 20px;
   }
 

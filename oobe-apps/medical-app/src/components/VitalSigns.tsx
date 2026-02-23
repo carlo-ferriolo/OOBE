@@ -62,16 +62,16 @@ const VitalSigns = ({ vitalSigns }: VitalSignsProps) => {
         </Card.Title>
 
         <Row className="mb-4 align-items-center">
-          <Col>
+          <Col className="fw-bold">
             <FormattedMessage
               id="vital.ecgRecording"
               defaultMessage="ECG Recording"
             />
           </Col>
-          <Col className="fw-semibold fs-4 text-end">
+          <Col className="fw-bold fs-4 text-end">
             {latest?.ecg ? `${latest.ecg} bpm` : "–"}
           </Col>
-          <Col className="text-start">
+          <Col className="text-start fw-bold">
             <FormattedMessage
               id="vital.bloodPressure"
               defaultMessage="Blood Pressure"
@@ -103,7 +103,7 @@ const VitalSigns = ({ vitalSigns }: VitalSignsProps) => {
               </div>
             </div>
 
-            <div>
+            <div className="fw-bold">
               <FormattedMessage
                 id="vital.oxygenSaturation"
                 defaultMessage="Oxygen Saturation"

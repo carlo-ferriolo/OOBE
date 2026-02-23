@@ -1,4 +1,4 @@
-name: Build Docker Image
+name: Build OOBE Portal Apps Docker Image
 
 on:
   # Run when pushing to stable branches
@@ -9,6 +9,8 @@ on:
       - "oobe-apps/smart-building-app/**"
       - "oobe-apps/sample-integrity-check-app/**"
       - "oobe-apps/Dockerfile"
+      - ".tool-versions"
+      - ".github/workflows/oobe-apps.yaml"
     branches:
       - "main"
   # Run on pull requests matching apps
@@ -19,6 +21,8 @@ on:
       - "oobe-apps/smart-building-app/**"
       - "oobe-apps/sample-integrity-check-app/**"
       - "oobe-apps/Dockerfile"
+      - ".tool-versions"
+      - ".github/workflows/oobe-apps.yaml"
 
 jobs:
   test-build-container:

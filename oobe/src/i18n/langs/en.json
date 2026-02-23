@@ -20,6 +20,9 @@
   "alarmResolvingSidebar.authenticatingUser": {
     "defaultMessage": "Authorization confirmed"
   },
+  "alarmResolvingSidebar.authorizationComplete": {
+    "defaultMessage": "You are authorized to resolve this alert. I’m sending you the instructions."
+  },
   "alarmResolvingSidebar.checkingAlarm": {
     "defaultMessage": "Checking, please wait"
   },
@@ -248,9 +251,6 @@
   "electricityMeter.title": {
     "defaultMessage": "Electricity Meter"
   },
-  "imageFormatError": {
-    "defaultMessage": "Backend rejected the image format."
-  },
   "faceRecognitionModal.authenticatedUser": {
     "defaultMessage": "Authorization confirmed"
   },
@@ -262,6 +262,9 @@
   },
   "faceRecognitionModal.tenantRecognized": {
     "defaultMessage": "Tenant successfully recognized."
+  },
+  "imageFormatError": {
+    "defaultMessage": "Backend rejected the image format."
   },
   "industrialAlertManagement.dischargePressure": {
     "defaultMessage": "DISCHARGE PRESSURE"

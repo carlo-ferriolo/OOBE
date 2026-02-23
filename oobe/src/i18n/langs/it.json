@@ -20,6 +20,9 @@
   "alarmResolvingSidebar.authenticatingUser": {
     "defaultMessage": "Authorization confirmed"
   },
+  "alarmResolvingSidebar.authorizationComplete": {
+    "defaultMessage": "You are authorized to resolve this alert. I’m sending you the instructions."
+  },
   "alarmResolvingSidebar.checkingAlarm": {
     "defaultMessage": "Checking, please wait"
   },

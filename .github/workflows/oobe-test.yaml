@@ -1,17 +1,26 @@
-name: Build and Test Frontend
+name: Build and Test Web App
 
 on:
   push:
+    paths:
+    - "oobe/**"
+    - ".tool-versions"
+    - ".github/workflows/oobe-test.yaml"
     branches: [main]
   pull_request:
+    paths:
+    - "oobe/**"
+    - ".tool-versions"
+    - ".github/workflows/oobe-test.yaml"
     branches: [main]
 
 jobs:
   build:
+    name: Build and Test
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -25,13 +34,24 @@ jobs:
         working-directory: oobe
         run: npm ci
 
-      - name: Lint
+      - name: Check formatting
         working-directory: oobe
-        run: npm run lint
+        run: npm run check-format
 
-      - name: Type Check
+      - name: Check linting
         working-directory: oobe
-        run: npm run type-check
+        run: npm run check-lint
+
+      - name: Check TypeScript
+        working-directory: oobe
+        run: npm run check-types
+
+      - name: Extract and verify translations
+        working-directory: oobe
+        run: |
+          cp src/i18n/langs/en.json src/i18n/langs/en.json.bak
+          npm run i18n:extract
+          diff -I '^--' src/i18n/langs/en.json.bak src/i18n/langs/en.json
 
       - name: Build
         working-directory: oobe

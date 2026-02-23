@@ -1,7 +1,17 @@
-name: Build Docker Image
+name: Build Web App's Docker Image
 
 on:
+  push:
+    paths:
+    - "oobe/**"
+    - ".tool-versions"
+    - ".github/workflows/oobe-docker.yaml"
+    branches: [main]
   pull_request:
+    paths:
+    - "oobe/**"
+    - ".tool-versions"
+    - ".github/workflows/oobe-docker.yaml"
     branches: [main]
 
 jobs:

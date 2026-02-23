@@ -134,7 +134,7 @@ const AlarmResolvingSidebar = ({
                       />
                     ) : (
                       <FormattedMessage
-                        id="alarmResolvingSidebar.resolvingAlarmInstructions"
+                        id="alarmResolvingSidebar.authorizationComplete"
                         defaultMessage="You are authorized to resolve this alert. I’m sending you the instructions."
                       />
                     )}

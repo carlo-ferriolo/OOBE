@@ -29,6 +29,9 @@
   "historyTable": {
     "defaultMessage": "Storico"
   },
+  "individuals": {
+    "defaultMessage": "Individuale"
+  },
   "loading": {
     "defaultMessage": "Caricamento…"
   },
@@ -41,11 +44,8 @@
   "peopleDetected": {
     "defaultMessage": "People detected"
   },
-  "singlePerson": {
-    "defaultMessage": "Persona individuale"
-  },
   "totalPeople": {
-    "defaultMessage": "Totale persone"
+    "defaultMessage": "Totale persone conteggiate"
   },
   "week": {
     "defaultMessage": "Settimana"

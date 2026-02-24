@@ -29,6 +29,9 @@
   "historyTable": {
     "defaultMessage": "History"
   },
+  "individuals": {
+    "defaultMessage": "Individuals"
+  },
   "loading": {
     "defaultMessage": "Loading..."
   },
@@ -41,11 +44,8 @@
   "peopleDetected": {
     "defaultMessage": "People detected"
   },
-  "singlePerson": {
-    "defaultMessage": "Single Person"
-  },
   "totalPeople": {
-    "defaultMessage": "Total People"
+    "defaultMessage": "Total People counted"
   },
   "week": {
     "defaultMessage": "Week"

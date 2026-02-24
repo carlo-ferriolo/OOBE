@@ -251,7 +251,7 @@ const App = ({ astarteUrl, realm, deviceId, token }: AppProps) => {
                   label={
                     <FormattedMessage
                       id="totalPeople"
-                      defaultMessage="Total People"
+                      defaultMessage="Total People counted"
                     />
                   }
                   value={weeklyStats.totalPeople}
@@ -261,8 +261,8 @@ const App = ({ astarteUrl, realm, deviceId, token }: AppProps) => {
                 <DataSection
                   label={
                     <FormattedMessage
-                      id="singlePerson"
-                      defaultMessage="Single Person"
+                      id="individuals"
+                      defaultMessage="Individuals"
                     />
                   }
                   value={weeklyStats.singlePerson}

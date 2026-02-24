@@ -19,10 +19,24 @@ import {
   pcbShortCircuit05,
 } from "../assets/images";
 import { APIClient } from "../api/APIClient";
+import ImageCarousel from "./ImageCarousel";
 
 const MISSING_HOLE_COLOR = "#FF0000";
 const SHORT_CIRCUIT_COLOR = "#FFC107";
 const DEFAULT_COLOR = "#222322";
+
+const imageOptions = [
+  pcbMissingHole00,
+  pcbMissingHole01,
+  pcbMissingHole02,
+  pcbMissingHole03,
+  pcbMissingHole04,
+  pcbShortCircuit01,
+  pcbShortCircuit02,
+  pcbShortCircuit03,
+  pcbShortCircuit04,
+  pcbShortCircuit05,
+];
 
 interface QualityInspectionProps {
   apiClient: APIClient;
@@ -166,9 +180,9 @@ const QualityInspection = ({ apiClient }: QualityInspectionProps) => {
       </div>
 
       {status !== "greeting" && (
-        <div className="row flex-grow-1 align-items-center mb-5">
-          <div className="col-md-6 d-flex justify-content-center mx-auto">
-            <div className="position-relative d-inline-block overflow-hidden">
+        <div className="row flex-grow-1 align-items-center justify-content-center mb-2">
+          <div className="col-md-7 d-flex flex-column align-items-center justify-content-center">
+            <div className="position-relative d-inline-block mb-4">
               {status === "result" &&
                 defectResults.map((defect, index) => (
                   <div
@@ -176,7 +190,6 @@ const QualityInspection = ({ apiClient }: QualityInspectionProps) => {
                     className="position-absolute"
                     style={{
                       zIndex: 10,
-                      position: "absolute",
                       left: `${defect.bbox[0] * scale.x}px`,
                       top: `${defect.bbox[1] * scale.y}px`,
                       width: `${defect.bbox[2] * scale.x}px`,
@@ -194,6 +207,17 @@ const QualityInspection = ({ apiClient }: QualityInspectionProps) => {
                 fluid
                 onLoad={handleImageLoad}
                 className="image"
+              />
+            </div>
+
+            <div className="mt-4 ms-5 w-100">
+              <ImageCarousel
+                images={imageOptions}
+                currentImage={currentImage}
+                onSelect={(img) => {
+                  setCurrentImage(img);
+                  setStatus("analysis");
+                }}
               />
             </div>
           </div>

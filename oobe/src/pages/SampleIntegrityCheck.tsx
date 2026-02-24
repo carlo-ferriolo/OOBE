@@ -24,6 +24,7 @@ import {
   blisterPackPartial10,
 } from "../assets/images";
 import { APIClient } from "../api/APIClient";
+import ImageCarousel from "./ImageCarousel";
 
 const EMPTY_BLISTER_COLOR = "#FF0000";
 const FULL_BLISTER_COLOR = "#FFC107";
@@ -59,6 +60,24 @@ const SampleIntegrityCheck = ({ apiClient }: SampleIntegrityCheckProps) => {
   const imageRef = useRef<HTMLImageElement>(null);
   const navigate = useNavigate();
   const intl = useIntl();
+
+  const images = [
+    blisterPackEmpty00,
+    blisterPackEmpty01,
+    blisterPackFull00,
+    blisterPackFull01,
+    blisterPackPartial00,
+    blisterPackPartial01,
+    blisterPackPartial02,
+    blisterPackPartial03,
+    blisterPackPartial04,
+    blisterPackPartial05,
+    blisterPackPartial06,
+    blisterPackPartial07,
+    blisterPackPartial08,
+    blisterPackPartial09,
+    blisterPackPartial10,
+  ];
 
   const handleImageLoad = () => {
     if (imageRef.current) {
@@ -174,7 +193,7 @@ const SampleIntegrityCheck = ({ apiClient }: SampleIntegrityCheckProps) => {
 
       {status !== "greeting" && (
         <div className="row flex-grow-1 align-items-center mb-5">
-          <div className="col-md-6 d-flex justify-content-center mx-auto">
+          <div className="col-md-6 d-flex flex-column align-items-center mx-auto">
             <div className="position-relative d-inline-block overflow-hidden">
               {status === "result" &&
                 blisterPackResults.map((defect, index) => (
@@ -201,6 +220,17 @@ const SampleIntegrityCheck = ({ apiClient }: SampleIntegrityCheckProps) => {
                 fluid
                 onLoad={handleImageLoad}
                 className="image"
+              />
+            </div>
+
+            <div className="py-3 mt-3 w-100">
+              <ImageCarousel
+                images={images}
+                currentImage={currentImage}
+                onSelect={(img) => {
+                  setCurrentImage(img);
+                  setStatus("analysis");
+                }}
               />
             </div>
           </div>

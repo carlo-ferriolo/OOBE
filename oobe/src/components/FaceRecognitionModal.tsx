@@ -39,7 +39,7 @@ const FaceRecognitionModal = ({
         },
       );
     } else {
-      apiClient.disconnectFaceRecognition();
+      apiClient.disconnectWebSocket();
       setAuthenticated(false);
     }
   }, [show, apiClient, onHide, url, navigate]);

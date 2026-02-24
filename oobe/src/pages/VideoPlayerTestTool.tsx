@@ -1,5 +1,5 @@
 import { Container, Row, Col } from "react-bootstrap";
-import video from "../assets/videos/video.webm";
+import video from "../assets/videos/SECOCompanyMovie2025.webm";
 
 const LocalVideoPlayer: React.FC = () => {
   return (

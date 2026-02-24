@@ -83,78 +83,70 @@ const IndustrialAlertManagement = ({
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    const temp: {
-      suctionPressure?: number;
-      dischargePressure?: number;
-      energyConsumption?: number;
-      internalHumidity?: number;
-      fanSpeed?: number;
-      systemStatus?: string;
-    } = {};
-
-    const handleUpdate = (update: IndustrialUpdate) => {
-      if (update.field === "suctionPressure") {
-        setRealTimeSuctionPressure(update.value);
+  const handleUpdate = (updateData: IndustrialUpdate) => {
+    switch (updateData.field) {
+      case "suctionPressure":
+        setRealTimeSuctionPressure(updateData.value);
         setSuctionPressure((prev) => [
           ...prev.slice(-19),
-          { x: Date.now(), y: update.value },
+          { x: Date.now(), y: updateData.value },
         ]);
-        temp.suctionPressure = update.value;
-      }
+        break;
 
-      if (update.field === "dischargePressure") {
-        setRealTimeDischargePressure(update.value);
+      case "dischargePressure":
+        setRealTimeDischargePressure(updateData.value);
         setDischargePressure((prev) => [
           ...prev.slice(-19),
-          { x: Date.now(), y: update.value },
+          { x: Date.now(), y: updateData.value },
         ]);
-        temp.dischargePressure = update.value;
-      }
+        break;
 
-      if (update.field === "energyConsumption") {
-        setRealTimeEnergyConsumption(update.value);
+      case "energyConsumption":
+        setRealTimeEnergyConsumption(updateData.value);
         setEnergyConsumption((prev) => [
           ...prev.slice(-19),
-          { x: Date.now(), y: update.value },
+          { x: Date.now(), y: updateData.value },
         ]);
-        temp.energyConsumption = update.value;
-      }
+        break;
 
-      if (update.field === "internalHumidity") {
-        setRealTimeInternalHumidity(update.value);
+      case "internalHumidity":
+        setRealTimeInternalHumidity(updateData.value);
         setInternalHumidity((prev) => [
           ...prev.slice(-19),
-          { x: Date.now(), y: update.value },
+          { x: Date.now(), y: updateData.value },
         ]);
-        temp.internalHumidity = update.value;
-      }
+        break;
 
-      if (update.field === "fanSpeed") {
-        setRealTimeFanSpeed(update.value);
+      case "fanSpeed":
+        setRealTimeFanSpeed(updateData.value);
         setFanSpeed((prev) => [
           ...prev.slice(-19),
-          { x: Date.now(), y: update.value },
+          { x: Date.now(), y: updateData.value },
         ]);
-        temp.fanSpeed = update.value;
-      }
+        break;
 
-      if (update.field === "systemStatus") {
-        setRealTimeSystemStatus(update.value);
+      case "systemStatus":
+        setRealTimeSystemStatus(updateData.value);
         setSystemStatus((prev) => [
           ...prev.slice(-19),
           {
             x: Date.now(),
-            y: update.value === "working" ? 1 : 0,
+            y: updateData.value === "working" ? 1 : 0,
           },
         ]);
-        temp.systemStatus = update.value;
-      }
-    };
+        break;
+      default:
+        break;
+    }
+  };
 
+  useEffect(() => {
     apiClient.connectIndustrial(handleUpdate);
-    return () => apiClient.disconnectIndustrial();
-  }, [apiClient, realTimeDischargePressure]);
+  }, [apiClient]);
+
+  const closeWsConnection = () => {
+    apiClient.disconnectWebSocket();
+  };
 
   return (
     <Container
@@ -169,7 +161,10 @@ const IndustrialAlertManagement = ({
           className="d-flex flex-column align-items-center justify-content-center h-100"
         >
           <NavLink to="/industrial" className="nav-link">
-            <Button className="close-icon-button text-white btn-dark">
+            <Button
+              className="close-icon-button text-white btn-dark"
+              onClick={closeWsConnection}
+            >
               <FontAwesomeIcon icon={faX} className="text-white" />
             </Button>
           </NavLink>

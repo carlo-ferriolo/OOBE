@@ -171,12 +171,14 @@ export class APIClient {
   }
 
   connectDashboard(onUpdate: (update: DashboardUpdate) => void) {
-    this.ws = new WebSocket(
-      `${this.config.apiUrl.toString().replace(/\/$/, "")}/ws`.replace(
-        /^http/,
-        "ws",
-      ),
-    );
+    if (!this.ws) {
+      this.ws = new WebSocket(
+        `${this.config.apiUrl.toString().replace(/\/$/, "")}/ws`.replace(
+          /^http/,
+          "ws",
+        ),
+      );
+    }
 
     this.ws.onopen = () => {
       console.log("WebSocket connected");
@@ -212,12 +214,14 @@ export class APIClient {
   }
 
   connectSmart(onUpdate: (update: SmartUpdate) => void) {
-    this.ws = new WebSocket(
-      `${this.config.apiUrl.toString().replace(/\/$/, "")}/ws`.replace(
-        /^http/,
-        "ws",
-      ),
-    );
+    if (!this.ws) {
+      this.ws = new WebSocket(
+        `${this.config.apiUrl.toString().replace(/\/$/, "")}/ws`.replace(
+          /^http/,
+          "ws",
+        ),
+      );
+    }
 
     this.ws.onopen = () => {
       console.log("WebSocket connected");
@@ -260,12 +264,14 @@ export class APIClient {
   }
 
   connectMedical(onUpdate: (update: MedicalUpdate) => void) {
-    this.ws = new WebSocket(
-      `${this.config.apiUrl.toString().replace(/\/$/, "")}/ws`.replace(
-        /^http/,
-        "ws",
-      ),
-    );
+    if (!this.ws) {
+      this.ws = new WebSocket(
+        `${this.config.apiUrl.toString().replace(/\/$/, "")}/ws`.replace(
+          /^http/,
+          "ws",
+        ),
+      );
+    }
 
     this.ws.onopen = () => {
       console.log("WebSocket connected");
@@ -308,12 +314,14 @@ export class APIClient {
   }
 
   connectIndustrial(onUpdate: (update: IndustrialUpdate) => void) {
-    this.ws = new WebSocket(
-      `${this.config.apiUrl.toString().replace(/\/$/, "")}/ws`.replace(
-        /^http/,
-        "ws",
-      ),
-    );
+    if (!this.ws) {
+      this.ws = new WebSocket(
+        `${this.config.apiUrl.toString().replace(/\/$/, "")}/ws`.replace(
+          /^http/,
+          "ws",
+        ),
+      );
+    }
 
     this.ws.onopen = () => {
       console.log("WebSocket connected");
@@ -436,30 +444,6 @@ export class APIClient {
     };
   }
 
-  disconnectDashboard() {
-    this.ws?.close();
-    this.ws = undefined;
-  }
-
-  disconnectSmart() {
-    this.ws?.close();
-    this.ws = undefined;
-  }
-
-  disconnectMedical() {
-    this.ws?.close();
-    this.ws = undefined;
-  }
-
-  disconnectIndustrial() {
-    this.ws?.close();
-    this.ws = undefined;
-  }
-
-  disconnectSmartClinicalRecord() {
-    this.ws?.close();
-    this.ws = undefined;
-  }
   async getPersonResult(imageFile: File): Promise<PersonResult[]> {
     const response = await this.axiosInstance.post<BackendPersonResult[]>(
       "/people-detect",
@@ -480,7 +464,7 @@ export class APIClient {
     );
   }
 
-  disconnectFaceRecognition() {
+  disconnectWebSocket() {
     this.ws?.close();
     this.ws = undefined;
   }

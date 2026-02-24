@@ -77,77 +77,64 @@ const MedicalAlertManagement = ({ apiClient }: MedicalAlertManagementProps) => {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    const temp: {
-      tubeStatus?: string;
-      tubeTemperature?: number;
-      tubeCurrent?: number;
-      gantryTemperature?: number;
-      coolingSystem?: string;
-      systemStatus?: string;
-    } = {};
-
-    const handleUpdate = (update: MedicalUpdate) => {
-      if (update.field === "tubeStatus") {
-        setTubeStatus(update.value);
-        temp.tubeStatus = update.value;
-      }
-
-      if (update.field === "tubeTemperature") {
-        setRealTimeTubeTemperature(update.value);
+  const handleUpdate = (updateData: MedicalUpdate) => {
+    switch (updateData.field) {
+      case "tubeStatus":
+        setTubeStatus(updateData.value);
+        break;
+      case "tubeTemperature":
+        setRealTimeTubeTemperature(updateData.value);
         setTubeTemperature((prev) => [
           ...prev.slice(-19),
-          { x: Date.now(), y: update.value },
+          { x: Date.now(), y: updateData.value },
         ]);
-        temp.tubeTemperature = update.value;
-      }
-
-      if (update.field === "tubeCurrent") {
-        setRealTimeTubeCurrent(update.value);
+        break;
+      case "tubeCurrent":
+        setRealTimeTubeCurrent(updateData.value);
         setTubeCurrent((prev) => [
           ...prev.slice(-19),
-          { x: Date.now(), y: update.value },
+          { x: Date.now(), y: updateData.value },
         ]);
-        temp.tubeCurrent = update.value;
-      }
-
-      if (update.field === "gantryTemperature") {
-        setRealTimeGantryTemperature(update.value);
+        break;
+      case "gantryTemperature":
+        setRealTimeGantryTemperature(updateData.value);
         setGantryTemperature((prev) => [
           ...prev.slice(-19),
-          { x: Date.now(), y: update.value },
+          { x: Date.now(), y: updateData.value },
         ]);
-        temp.gantryTemperature = update.value;
-      }
-
-      if (update.field === "coolingSystem") {
-        setRealTimeCoolingSystem(update.value);
+        break;
+      case "coolingSystem":
+        setRealTimeCoolingSystem(updateData.value);
         setCoolingSystem((prev) => [
           ...prev.slice(-19),
           {
             x: Date.now(),
-            y: update.value === "Running" ? 1 : 0,
+            y: updateData.value === "Running" ? 1 : 0,
           },
         ]);
-        temp.coolingSystem = update.value;
-      }
-
-      if (update.field === "systemStatus") {
-        setRealTimeSystemStatus(update.value);
+        break;
+      case "systemStatus":
+        setRealTimeSystemStatus(updateData.value);
         setSystemStatus((prev) => [
           ...prev.slice(-19),
           {
             x: Date.now(),
-            y: update.value === "ready" ? 1 : 0,
+            y: updateData.value === "ready" ? 1 : 0,
           },
         ]);
-        temp.systemStatus = update.value;
-      }
-    };
+        break;
+      default:
+        break;
+    }
+  };
 
+  useEffect(() => {
     apiClient.connectMedical(handleUpdate);
-    return () => apiClient.disconnectMedical();
-  }, [apiClient, realTimeTubeTemperature]);
+  }, [apiClient]);
+
+  const closeWsConnection = () => {
+    apiClient.disconnectWebSocket();
+  };
 
   return (
     <Container
@@ -162,7 +149,10 @@ const MedicalAlertManagement = ({ apiClient }: MedicalAlertManagementProps) => {
           className="d-flex flex-column align-items-center justify-content-center h-100"
         >
           <NavLink to="/medical" className="nav-link">
-            <Button className="close-icon-button text-white btn-dark">
+            <Button
+              className="close-icon-button text-white btn-dark"
+              onClick={closeWsConnection}
+            >
               <FontAwesomeIcon icon={faX} className="text-white" />
             </Button>
           </NavLink>

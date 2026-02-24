@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Container, Row, Col, Card, Dropdown } from "react-bootstrap";
 import "./Dashboard.scss";
 import { FormattedMessage } from "react-intl";
@@ -23,6 +23,7 @@ const Dashboard = ({ apiClient }: DashboardProps) => {
   const [realTimeCpu, setRealTimeCpu] = useState(0);
   const [realTimeRam, setRealTimeRam] = useState(0);
   const [usageLogs, setUsageLogs] = useState<UsageLogEntry[]>([]);
+  const tempLogRef = useRef<Partial<UsageLogEntry>>({});
 
   const updateTime = () => {
     const now = new Date();
@@ -37,48 +38,49 @@ const Dashboard = ({ apiClient }: DashboardProps) => {
     return () => clearInterval(interval);
   }, []);
 
+  const handleUpdate = useCallback((update: DashboardUpdate) => {
+    const now = new Date();
+    const timestamp = Date.now();
+
+    if (update.field === "cpuUsage") {
+      setRealTimeCpu(update.value);
+      setCpuData((prev) => [
+        ...prev.slice(-19),
+        { x: timestamp, y: update.value },
+      ]);
+    } else if (update.field === "ramUsage") {
+      setRealTimeRam(update.value);
+      setRamData((prev) => [
+        ...prev.slice(-19),
+        { x: timestamp, y: update.value },
+      ]);
+    }
+
+    const key = update.field === "cpuUsage" ? "cpu" : "ram";
+    tempLogRef.current[key] = update.value;
+
+    if (
+      tempLogRef.current.cpu !== undefined &&
+      tempLogRef.current.ram !== undefined
+    ) {
+      const newEntry: UsageLogEntry = {
+        cpu: tempLogRef.current.cpu,
+        ram: tempLogRef.current.ram,
+        date: now.toLocaleDateString("en-GB"),
+        time: now
+          .toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })
+          .replace(":", "."),
+      };
+
+      setUsageLogs((prev) => [newEntry, ...prev.slice(0, 4)]);
+
+      tempLogRef.current = {};
+    }
+  }, []);
+
   useEffect(() => {
-    const temp: { cpu?: number; ram?: number } = {};
-
-    const handleUpdate = (update: DashboardUpdate) => {
-      const now = new Date();
-
-      if (update.field === "cpuUsage") {
-        setRealTimeCpu(update.value);
-        setCpuData((prev) => [
-          ...prev.slice(-19),
-          { x: Date.now(), y: update.value },
-        ]);
-        temp.cpu = update.value;
-      }
-
-      if (update.field === "ramUsage") {
-        setRealTimeRam(update.value);
-        setRamData((prev) => [
-          ...prev.slice(-19),
-          { x: Date.now(), y: update.value },
-        ]);
-        temp.ram = update.value;
-      }
-
-      if (temp.cpu !== undefined && temp.ram !== undefined) {
-        const entry: UsageLogEntry = {
-          cpu: temp.cpu,
-          ram: temp.ram,
-          date: now.toLocaleDateString("en-GB"),
-          time: now
-            .toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })
-            .replace(":", "."),
-        };
-        setUsageLogs((prev) => [entry, ...prev.slice(0, 5)]);
-        temp.cpu = undefined;
-        temp.ram = undefined;
-      }
-    };
-
     apiClient.connectDashboard(handleUpdate);
-    return () => apiClient.disconnectDashboard();
-  }, [apiClient]);
+  }, [apiClient, handleUpdate]);
 
   const handleExit = async () => {
     try {

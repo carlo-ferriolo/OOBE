@@ -34,74 +34,83 @@ const HistoryCameraTable = ({ data }: Props) => {
 
   return (
     <>
-      <Table className="border-top mt-4">
-        <thead>
-          <tr>
-            <th></th>
-            <th>
-              <FormattedMessage
-                id="cameraHistoryTable.event"
-                defaultMessage="Event"
-              />
-            </th>
-            <th>
-              <FormattedMessage
-                id="cameraHistoryTable.number"
-                defaultMessage="Number"
-              />
-            </th>
-            <th>
-              <FormattedMessage
-                id="cameraHistoryTable.time"
-                defaultMessage="Time"
-              />
-            </th>
-            <th>
-              <FormattedMessage
-                id="cameraHistoryTable.date"
-                defaultMessage="Date"
-              />
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {paginatedData.map((row, index) => (
-            <tr key={index}>
-              <td className="text-center align-middle">
-                {row.event === "Incident" && (
-                  <FontAwesomeIcon
-                    icon={faCircleExclamation}
-                    style={{
-                      color: "var(--bs-warning)",
-                      width: "1em",
-                      height: "1em",
-                    }}
-                  />
-                )}
-              </td>
-              <td>{row.event}</td>
-              <td>{row.numberOfPeople}</td>
-              <td>
-                {row.datetime &&
-                  intl.formatTime(row.datetime, {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                    second: "2-digit",
-                    hour12: false,
-                  })}
-              </td>
-              <td>
-                {row.datetime &&
-                  intl.formatDate(row.datetime, {
-                    day: "2-digit",
-                    month: "2-digit",
-                    year: "numeric",
-                  })}
-              </td>
+      {paginatedData.length === 0 ? (
+        <div className="text-muted">
+          <FormattedMessage
+            id="cameraHistoryTable.noData"
+            defaultMessage="No tabular data available"
+          />
+        </div>
+      ) : (
+        <Table className="border-top mt-4">
+          <thead>
+            <tr>
+              <th></th>
+              <th>
+                <FormattedMessage
+                  id="cameraHistoryTable.event"
+                  defaultMessage="Event"
+                />
+              </th>
+              <th>
+                <FormattedMessage
+                  id="cameraHistoryTable.number"
+                  defaultMessage="Number"
+                />
+              </th>
+              <th>
+                <FormattedMessage
+                  id="cameraHistoryTable.time"
+                  defaultMessage="Time"
+                />
+              </th>
+              <th>
+                <FormattedMessage
+                  id="cameraHistoryTable.date"
+                  defaultMessage="Date"
+                />
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
+          </thead>
+          <tbody>
+            {paginatedData.map((row, index) => (
+              <tr key={index}>
+                <td className="text-center align-middle">
+                  {row.event === "Incident" && (
+                    <FontAwesomeIcon
+                      icon={faCircleExclamation}
+                      style={{
+                        color: "var(--bs-warning)",
+                        width: "1em",
+                        height: "1em",
+                      }}
+                    />
+                  )}
+                </td>
+                <td>{row.event}</td>
+                <td>{row.numberOfPeople}</td>
+                <td>
+                  {row.datetime &&
+                    intl.formatTime(row.datetime, {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      second: "2-digit",
+                      hour12: false,
+                    })}
+                </td>
+                <td>
+                  {row.datetime &&
+                    intl.formatDate(row.datetime, {
+                      day: "2-digit",
+                      month: "2-digit",
+                      year: "numeric",
+                    })}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      )}
       {totalPages > 1 && (
         <TablePagination
           activePage={currentPage}

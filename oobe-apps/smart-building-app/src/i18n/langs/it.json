@@ -11,6 +11,9 @@
   "cameraHistoryTable.event": {
     "defaultMessage": "Evento"
   },
+  "cameraHistoryTable.noData": {
+    "defaultMessage": "Dati tabellari non disponibili"
+  },
   "cameraHistoryTable.number": {
     "defaultMessage": "Numero"
   },

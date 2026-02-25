@@ -7,7 +7,7 @@ import DataStreamChart from "../components/DataStreamChart";
 import PropertyChart from "../components/PropertyChart";
 import { NavLink } from "react-router-dom";
 import type { APIClient, SmartUpdate } from "../api/APIClient";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { defineMessages } from "react-intl";
 import AlarmResolvingSidebar from "../components/AlarmResolvingSidebar";
 
@@ -74,74 +74,67 @@ const SmartAlertManagement = ({ apiClient }: SmartAlertManagementProps) => {
     return () => clearInterval(interval);
   }, []);
 
+  const handleUpdate = useCallback(
+    (update: SmartUpdate) => {
+      switch (update.field) {
+        case "plantStatus":
+          setPlantStatus(update.value);
+          break;
+        case "plantPower":
+          setRealTimePlantPower(update.value);
+          setPlantPower((prev) => [
+            ...prev.slice(-19),
+            { x: Date.now(), y: update.value },
+          ]);
+          break;
+        case "powerSentToGrid":
+          setRealTimePowerSentToGrid(update.value);
+          setPowerSentToGrid((prev) => [
+            ...prev.slice(-19),
+            { x: Date.now(), y: update.value },
+          ]);
+          break;
+        case "inverterTemperature":
+          setRealTimeInvTemp(update.value);
+          setInverterTemperature((prev) => [
+            ...prev.slice(-19),
+            { x: Date.now(), y: update.value },
+          ]);
+          break;
+        case "selfConsumption": {
+          const selfConsumptionPercentage =
+            realTimePlantPower > 0
+              ? (update.value / realTimePlantPower) * 100
+              : 0;
+
+          setRealTimeSelfConsupmtion(selfConsumptionPercentage);
+          setSelfConsumption((prev) => [
+            ...prev.slice(-19),
+            { x: Date.now(), y: selfConsumptionPercentage },
+          ]);
+          break;
+        }
+        case "inverterStatus":
+          setRealTimeInvStatus(update.value);
+          setInverterStatus((prev) => [
+            ...prev.slice(-19),
+            { x: Date.now(), y: update.value === "ready" ? 1 : 0 },
+          ]);
+          break;
+        default:
+          break;
+      }
+    },
+    [realTimePlantPower],
+  );
+
   useEffect(() => {
-    const temp: {
-      plantStatus?: string;
-      plantPower?: number;
-      powerSentToGrid?: number;
-      inverterTemperature?: number;
-      selfConsumption?: number;
-      inverterStatus?: string;
-    } = {};
-
-    const handleUpdate = (update: SmartUpdate) => {
-      if (update.field === "plantStatus") {
-        setPlantStatus(update.value);
-        temp.plantStatus = update.value;
-      }
-
-      if (update.field === "plantPower") {
-        setRealTimePlantPower(update.value);
-        setPlantPower((prev) => [
-          ...prev.slice(-19),
-          { x: Date.now(), y: update.value },
-        ]);
-        temp.plantPower = update.value;
-      }
-
-      if (update.field === "powerSentToGrid") {
-        setRealTimePowerSentToGrid(update.value);
-        setPowerSentToGrid((prev) => [
-          ...prev.slice(-19),
-          { x: Date.now(), y: update.value },
-        ]);
-        temp.powerSentToGrid = update.value;
-      }
-
-      if (update.field === "inverterTemperature") {
-        setRealTimeInvTemp(update.value);
-        setInverterTemperature((prev) => [
-          ...prev.slice(-19),
-          { x: Date.now(), y: update.value },
-        ]);
-        temp.inverterTemperature = update.value;
-      }
-
-      if (update.field === "selfConsumption") {
-        const selfConsumptionPercentage =
-          (update.value / realTimePlantPower) * 100;
-
-        setRealTimeSelfConsupmtion(selfConsumptionPercentage);
-        setSelfConsumption((prev) => [
-          ...prev.slice(-19),
-          { x: Date.now(), y: selfConsumptionPercentage },
-        ]);
-        temp.selfConsumption = selfConsumptionPercentage;
-      }
-
-      if (update.field === "inverterStatus") {
-        setRealTimeInvStatus(update.value);
-        setInverterStatus((prev) => [
-          ...prev.slice(-19),
-          { x: Date.now(), y: update.value === "ready" ? 1 : 0 },
-        ]);
-        temp.inverterStatus = update.value;
-      }
-    };
-
     apiClient.connectSmart(handleUpdate);
-    return () => apiClient.disconnectSmart();
-  }, [apiClient, realTimePlantPower]);
+  }, [apiClient, handleUpdate]);
+
+  const closeWsConnection = () => {
+    apiClient.disconnectWebSocket();
+  };
 
   return (
     <Container
@@ -156,7 +149,10 @@ const SmartAlertManagement = ({ apiClient }: SmartAlertManagementProps) => {
           className="d-flex flex-column align-items-center justify-content-center h-100"
         >
           <NavLink to="/smart-building" className="nav-link">
-            <Button className="close-icon-button text-white btn-dark">
+            <Button
+              className="close-icon-button text-white btn-dark"
+              onClick={closeWsConnection}
+            >
               <FontAwesomeIcon icon={faX} className="text-white" />
             </Button>
           </NavLink>

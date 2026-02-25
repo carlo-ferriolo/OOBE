@@ -113,44 +113,43 @@ const SmartClinical = ({ apiClient }: SmartClinicalProps) => {
   const [systolic, setSystolic] = useState(0);
   const [showModal, setShowModal] = useState(false);
 
-  useEffect(() => {
+  const handleUpdate = (update: SmartClinicalRecordUpdate) => {
     const temp: {
       ecgCurrent?: number;
     } = {};
+    switch (update.field) {
+      case "bpm":
+        setRealTimeBpmCurrent(update.value);
+        break;
 
-    const handleUpdate = (update: SmartClinicalRecordUpdate) => {
-      switch (update.field) {
-        case "bpm":
-          setRealTimeBpmCurrent(update.value);
-          break;
+      case "ecg":
+        setEcgCurrent((prev) => [
+          ...prev.slice(-149),
+          { x: Date.now(), y: update.value },
+        ]);
+        temp.ecgCurrent = update.value;
+        break;
 
-        case "ecg":
-          setEcgCurrent((prev) => [
-            ...prev.slice(-149),
-            { x: Date.now(), y: update.value },
-          ]);
-          temp.ecgCurrent = update.value;
-          break;
+      case "oxygenSaturation":
+        setOxygenSaturation(Math.round(update.value));
+        break;
 
-        case "oxygenSaturation":
-          setOxygenSaturation(Math.round(update.value));
-          break;
+      case "systolic":
+        setSystolic(Math.round(update.value));
+        break;
 
-        case "systolic":
-          setSystolic(Math.round(update.value));
-          break;
+      case "diastolic":
+        setDiastolic(Math.round(update.value));
+        break;
 
-        case "diastolic":
-          setDiastolic(Math.round(update.value));
-          break;
+      default:
+        break;
+    }
+  };
 
-        default:
-          break;
-      }
-    };
-
+  useEffect(() => {
     apiClient.connectSmartClinicalRecord(handleUpdate);
-    return () => apiClient.disconnectSmartClinicalRecord();
+    return () => apiClient.disconnectWebSocket();
   }, [apiClient]);
 
   return (

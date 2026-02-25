@@ -95,7 +95,7 @@ const App = ({ astarteUrl, realm, deviceId, token }: AppProps) => {
   return (
     <Container fluid className="p-4" style={{ minHeight: "100vh" }}>
       {error && (
-        <Alert variant="danger" className="mx-2 shadow-sm">
+        <Alert variant="danger" className="mx-2 shadow-sm" dismissible>
           {error}
         </Alert>
       )}

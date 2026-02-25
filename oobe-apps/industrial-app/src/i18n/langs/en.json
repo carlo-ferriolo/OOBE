@@ -8,11 +8,17 @@
   "chart.shortCircuit": {
     "defaultMessage": "Short Circuit (SC)"
   },
+  "day": {
+    "defaultMessage": "Day"
+  },
   "defects": {
     "defaultMessage": "Defects"
   },
   "fetchData.error": {
     "defaultMessage": "Failed to fetch data."
+  },
+  "month": {
+    "defaultMessage": "Month"
   },
   "noData": {
     "defaultMessage": "No data available."
@@ -46,5 +52,11 @@
   },
   "topProducts": {
     "defaultMessage": "Top Products"
+  },
+  "week": {
+    "defaultMessage": "Week"
+  },
+  "year": {
+    "defaultMessage": "Year"
   }
 }

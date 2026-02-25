@@ -1,41 +1,50 @@
 {
-  "pillsIntegrityCheck": {
-    "defaultMessage": "Verifica integrità blister (alveoli vuoti o pieni)"
-  },
-  "noData": {
-    "defaultMessage": "Dati non disponibili."
-  },
-  "loading": {
-    "defaultMessage": "Caricamento…"
-  },
-  "topProducts": {
-    "defaultMessage": "Prodotti a maggiore volume"
-  },
-  "sampleIntegrityCheck": {
-    "defaultMessage": "Controllo integrità del campione"
-  },
-  "stats.highestValuesRecordedTitle": {
-    "defaultMessage": "Valori massimi registrati"
-  },
-  "stats.totalPieces": {
-    "defaultMessage": "Pezzi totali prodotti"
-  },
-  "stats.qualityOk": {
-    "defaultMessage": "Qualità conforme (OK)"
-  },
-  "stats.qualityKo": {
-    "defaultMessage": "Qualità non conforme (KO)"
-  },
-  "stats.qualityRate": {
-    "defaultMessage": "Indice di qualità"
-  },
   "chart.broken": {
     "defaultMessage": "Alveoli vuoti"
   },
   "chart.goodState": {
     "defaultMessage": "Alveoli pieni"
   },
+  "day": {
+    "defaultMessage": "Giorno"
+  },
   "fetchData.error": {
     "defaultMessage": "Errore nel recupero dei dati."
+  },
+  "month": {
+    "defaultMessage": "Mese"
+  },
+  "noData": {
+    "defaultMessage": "Dati non disponibili."
+  },
+  "pillsIntegrityCheck": {
+    "defaultMessage": "Verifica integrità blister (alveoli vuoti o pieni)"
+  },
+  "sampleIntegrityCheck": {
+    "defaultMessage": "Sample integrity check"
+  },
+  "stats.highestValuesRecordedTitle": {
+    "defaultMessage": "Highest Values Recorded"
+  },
+  "stats.qualityKo": {
+    "defaultMessage": "Qualità non conforme (KO)"
+  },
+  "stats.qualityOk": {
+    "defaultMessage": "Qualità conforme (OK)"
+  },
+  "stats.qualityRate": {
+    "defaultMessage": "Indice di qualità"
+  },
+  "stats.totalPieces": {
+    "defaultMessage": "Total Pieces"
+  },
+  "topProducts": {
+    "defaultMessage": "Prodotti a maggiore volume"
+  },
+  "week": {
+    "defaultMessage": "Settimana"
+  },
+  "year": {
+    "defaultMessage": "Anno"
   }
 }

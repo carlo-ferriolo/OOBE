@@ -1,15 +1,24 @@
 {
-  "pillsIntegrityCheck": {
-    "defaultMessage": "Pills integrity check (broken vs good cavities)"
+  "chart.broken": {
+    "defaultMessage": "Broken"
+  },
+  "chart.goodState": {
+    "defaultMessage": "Good state"
+  },
+  "day": {
+    "defaultMessage": "Day"
+  },
+  "fetchData.error": {
+    "defaultMessage": "Failed to fetch data."
+  },
+  "month": {
+    "defaultMessage": "Month"
   },
   "noData": {
     "defaultMessage": "No data available."
   },
-  "loading": {
-    "defaultMessage": "Loading..."
-  },
-  "topProducts": {
-    "defaultMessage": "Top Products"
+  "pillsIntegrityCheck": {
+    "defaultMessage": "Pills integrity check (broken vs good cavities)"
   },
   "sampleIntegrityCheck": {
     "defaultMessage": "Sample integrity check"
@@ -17,25 +26,25 @@
   "stats.highestValuesRecordedTitle": {
     "defaultMessage": "Highest Values Recorded"
   },
-  "stats.totalPieces": {
-    "defaultMessage": "Total Pieces"
+  "stats.qualityKo": {
+    "defaultMessage": "Quality KO"
   },
   "stats.qualityOk": {
     "defaultMessage": "Quality OK"
   },
-  "stats.qualityKo": {
-    "defaultMessage": "Quality KO"
-  },
   "stats.qualityRate": {
     "defaultMessage": "Quality Rate"
   },
-  "chart.broken": {
-    "defaultMessage": "Broken"
+  "stats.totalPieces": {
+    "defaultMessage": "Total Pieces"
   },
-  "chart.goodState": {
-    "defaultMessage": "Good state"
+  "topProducts": {
+    "defaultMessage": "Top Products"
   },
-  "fetchData.error": {
-    "defaultMessage": "Failed to fetch data."
+  "week": {
+    "defaultMessage": "Week"
+  },
+  "year": {
+    "defaultMessage": "Year"
   }
 }

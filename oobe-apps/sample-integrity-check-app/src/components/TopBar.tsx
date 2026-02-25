@@ -8,6 +8,7 @@ import { isRangePreset } from "./RangeSelect";
 
 import "react-datepicker/dist/react-datepicker.css";
 import { RangePreset } from "types";
+import { defineMessages } from "react-intl";
 
 type TopBarProps = {
   title: string;
@@ -52,6 +53,51 @@ const TopBar = ({
     }
   };
 
+  type RangePreset = "Day" | "Week" | "Month" | "Year";
+
+  const dateRangeMessages = defineMessages({
+    day: {
+      id: "day",
+      defaultMessage: "Day",
+    },
+    week: {
+      id: "week",
+      defaultMessage: "Week",
+    },
+    month: {
+      id: "month",
+      defaultMessage: "Month",
+    },
+    year: {
+      id: "year",
+      defaultMessage: "Year",
+    },
+  });
+
+  type PresetOption = {
+    name: RangePreset;
+    messageId: string;
+  };
+
+  const presetOptions: PresetOption[] = [
+    {
+      name: "Day",
+      messageId: dateRangeMessages.day.id,
+    },
+    {
+      name: "Week",
+      messageId: dateRangeMessages.week.id,
+    },
+    {
+      name: "Month",
+      messageId: dateRangeMessages.month.id,
+    },
+    {
+      name: "Year",
+      messageId: dateRangeMessages.year.id,
+    },
+  ];
+
   return (
     <Stack
       direction="horizontal"
@@ -86,12 +132,7 @@ const TopBar = ({
         >
           <DateButtonsStack
             value={isRangePreset(selectedRange) ? selectedRange : null}
-            options={[
-              { name: "Day", messageId: "day" },
-              { name: "Week", messageId: "week" },
-              { name: "Month", messageId: "month" },
-              { name: "Year", messageId: "year" },
-            ]}
+            options={presetOptions}
             onChange={onRangeChange}
             allDisabled={isDisabled}
           />

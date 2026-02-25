@@ -8,11 +8,17 @@
   "chart.shortCircuit": {
     "defaultMessage": "Cortocircuito (SC)"
   },
+  "day": {
+    "defaultMessage": "Giorno"
+  },
   "defects": {
     "defaultMessage": "Difetti"
   },
   "fetchData.error": {
     "defaultMessage": "Errore nel recupero dei dati."
+  },
+  "month": {
+    "defaultMessage": "Mese"
   },
   "noData": {
     "defaultMessage": "Dati non disponibili."
@@ -46,5 +52,11 @@
   },
   "topProducts": {
     "defaultMessage": "Prodotti d'eccellenza"
+  },
+  "week": {
+    "defaultMessage": "Settimana"
+  },
+  "year": {
+    "defaultMessage": "Anno"
   }
 }

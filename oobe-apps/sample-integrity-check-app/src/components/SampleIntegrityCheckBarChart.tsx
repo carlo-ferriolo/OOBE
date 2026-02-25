@@ -61,11 +61,18 @@ const IndustrialBarChart: React.FC<SampleIntegrityCheckBarChartProps> = ({
       intersect: false,
     },
     legend: {
+      show: true,
+      showForSingleSeries: true,
       position: "top",
+      horizontalAlign: "left",
+      markers: {
+        shape: "circle",
+      },
     },
     title: {
       text: chartTitle,
       align: "left",
+      margin: 20,
     },
   };
 

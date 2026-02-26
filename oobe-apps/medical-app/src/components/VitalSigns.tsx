@@ -52,9 +52,9 @@ const VitalSigns = ({ vitalSigns }: VitalSignsProps) => {
   };
 
   return (
-    <Card className="p-4 h-100">
+    <Card className="h-100">
       <Card.Body>
-        <Card.Title className="mb-3">
+        <Card.Title className="fs-5">
           <FormattedMessage
             id="vital.realTimeName"
             defaultMessage="Real Time Vital Signs"

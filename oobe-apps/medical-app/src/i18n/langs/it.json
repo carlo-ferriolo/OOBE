@@ -11,6 +11,10 @@
   "overview.Name": {
     "defaultMessage": "Nome"
   },
+
+  "overview.noPatientData": {
+    "defaultMessage": "Nessun Quadro clinico del paziente disponibile."
+  },
   "overview.patientAge": {
     "defaultMessage": "Età"
   },

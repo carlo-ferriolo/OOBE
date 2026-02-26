@@ -11,6 +11,9 @@
   "overview.Name": {
     "defaultMessage": "Name"
   },
+  "overview.noPatientData": {
+    "defaultMessage": "No patient overview data available."
+  },
   "overview.patientAge": {
     "defaultMessage": "Age"
   },

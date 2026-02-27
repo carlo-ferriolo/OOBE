@@ -11,12 +11,14 @@ interface AlarmResolvingSidebarProps {
   show: boolean;
   onHide: () => void;
   apiClient: APIClient;
+  statusToFix: "inverter" | "industrial" | "medical";
 }
 
 const AlarmResolvingSidebar = ({
   show,
   onHide,
   apiClient,
+  statusToFix,
 }: AlarmResolvingSidebarProps) => {
   const [status, setStatus] = useState("notAuthenticated");
   const isProcessingRef = useRef(false);
@@ -55,16 +57,27 @@ const AlarmResolvingSidebar = ({
         setStatus("alarmResolvingInstructions");
         apiClient.disconnectWebSocket();
       }, 2000);
-    } else if (status === "alarmCheck") {
-      timer = setTimeout(() => {
-        setStatus("alarmResolved");
-      }, 3000);
     }
 
     return () => {
       if (timer) clearTimeout(timer);
     };
   }, [status, apiClient]);
+
+  const handleAlarmCheck = () => {
+    setStatus("alarmCheck");
+    setTimeout(() => {
+      apiClient
+        .fixStatus(statusToFix)
+        .then(() => {
+          setStatus("alarmResolved");
+        })
+        .catch((error) => {
+          console.error("Failed to resolve:", error);
+          setStatus("alarmResolvingInstructions");
+        });
+    }, 3000);
+  };
 
   return (
     <>
@@ -182,9 +195,7 @@ const AlarmResolvingSidebar = ({
                   <Button
                     variant="light"
                     className="check-alarm-button"
-                    onClick={() => {
-                      setStatus("alarmCheck");
-                    }}
+                    onClick={handleAlarmCheck}
                   >
                     <FormattedMessage
                       id="alarmResolvingSidebar.verifyResolutionButton"

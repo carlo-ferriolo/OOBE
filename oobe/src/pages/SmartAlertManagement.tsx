@@ -222,6 +222,7 @@ const SmartAlertManagement = ({ apiClient }: SmartAlertManagementProps) => {
         show={showSidebar}
         onHide={() => setShowSidebar(false)}
         apiClient={apiClient}
+        statusToFix="inverter"
       />
     </Container>
   );

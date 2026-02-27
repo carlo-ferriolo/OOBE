@@ -222,6 +222,7 @@ const MedicalAlertManagement = ({ apiClient }: MedicalAlertManagementProps) => {
         show={showSidebar}
         onHide={() => setShowSidebar(false)}
         apiClient={apiClient}
+        statusToFix="medical"
       />
     </Container>
   );

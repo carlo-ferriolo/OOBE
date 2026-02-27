@@ -244,6 +244,7 @@ const IndustrialAlertManagement = ({
         show={showSidebar}
         onHide={() => setShowSidebar(false)}
         apiClient={apiClient}
+        statusToFix="industrial"
       />
     </Container>
   );

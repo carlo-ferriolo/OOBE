@@ -170,6 +170,15 @@ export class APIClient {
     await this.axiosInstance.post("/exit");
   }
 
+  async fixStatus(
+    path: "inverter" | "industrial" | "medical",
+  ): Promise<string> {
+    return this.axiosInstance
+      .post(`/fix-${path}-status`)
+      .then((response) => response.data)
+      .catch((error) => error);
+  }
+
   connectDashboard(onUpdate: (update: DashboardUpdate) => void) {
     if (!this.ws) {
       this.ws = new WebSocket(

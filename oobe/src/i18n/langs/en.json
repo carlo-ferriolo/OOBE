@@ -95,7 +95,7 @@
   "components.DeviceDetailsCard.title": {
     "defaultMessage": "Device details"
   },
-  "components.DeviceDetailsCard.DeviceID": {
+  "components.DeviceDetailsCard.deviceId": {
     "defaultMessage": "Device ID"
   },
   "components.GeolocalizationCard.addressLabel": {

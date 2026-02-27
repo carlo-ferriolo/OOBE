@@ -234,7 +234,7 @@ const IndustrialAlertManagement = ({
         >
           <PropertyChart
             chartName={messages.systemStatus.defaultMessage}
-            chartColor="green"
+            chartColor={realTimeSystemStatus === "fault" ? "red" : "green"}
             chartData={systemStatus || []}
             realTimeData={realTimeSystemStatus}
           />

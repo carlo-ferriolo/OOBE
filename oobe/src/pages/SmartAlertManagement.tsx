@@ -212,7 +212,7 @@ const SmartAlertManagement = ({ apiClient }: SmartAlertManagementProps) => {
         >
           <PropertyChart
             chartName={messages.inverterStatus.defaultMessage}
-            chartColor="green"
+            chartColor={realTimeInvStatus === "fault" ? "red" : "green"}
             chartData={inverterStatus || []}
             realTimeData={realTimeInvStatus}
           />

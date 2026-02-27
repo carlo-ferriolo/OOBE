@@ -10,7 +10,7 @@ interface DataPoint {
 
 type PropertyChartProps = {
   chartName: string;
-  chartColor?: "blue" | "orange" | "green";
+  chartColor?: "blue" | "orange" | "green" | "red";
   chartData: DataPoint[];
   realTimeData?: string;
 };
@@ -57,7 +57,9 @@ const PropertyChart = ({
         ? ["#00C2FF"]
         : chartColor === "orange"
           ? ["#FF6B00"]
-          : ["#0FFF00"],
+          : chartColor === "red"
+            ? ["#FF0000"]
+            : ["#0FFF00"],
   };
 
   function capitalizeFirstLetter(val: string | undefined) {
